@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Terminal, ChevronRight, Zap } from 'lucide-react';
+import profile from '../assets/profile.png';
+
+
 
 const Hero = () => {
     return (
@@ -102,8 +105,8 @@ const Hero = () => {
                     }}>
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(45deg, rgba(15, 5, 6, 0.6), transparent)', zIndex: 1 }}></div>
                         <img
-                            src="./src/assets/profile.jpg"
-                            alt="Profile"
+                            src={profile} alt="Profile" 
+                            
                             style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'contrast(1.1) brightness(1.05) grayscale(0.2)', position: 'relative', zIndex: 0, opacity: 0.9 }}
                         />
                         <div style={{ 
