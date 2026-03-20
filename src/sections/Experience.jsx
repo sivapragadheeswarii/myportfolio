@@ -101,7 +101,7 @@ const Experience = () => {
 
                         <div style={{ fontFamily: 'Fira Code, monospace', fontSize: '0.7rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
                             <div style={{ color: 'var(--accent-secondary)' }}>$ npm run deploy:production</div>
-                            <div style={{ color: '#4dff88', marginBottom: '0.5rem' }}>&gt; Initializing MERN build...</div>
+                            <div style={{ color: '#2a6f41ff', marginBottom: '0.5rem' }}>&gt; Initializing MERN build...</div>
                             <div>&gt; Processing assets... [DONE]</div>
                             <div>&gt; Optimizing DB queries... [DONE]</div>
                             <div style={{ color: 'var(--accent-primary)' }}>&gt; Injecting security headers...</div>

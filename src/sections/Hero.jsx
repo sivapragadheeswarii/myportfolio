@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Terminal, ChevronRight, Zap } from 'lucide-react';
-import profile from '../assets/profile.png';
+import profile from '../assets/profile.jpg';
 
 
 
@@ -94,7 +94,6 @@ const Hero = () => {
                         width: '100%',
                         aspectRatio: '0.75',
                         background: 'var(--bg-secondary)',
-                        backgroundImage: 'url("./src/assets/office_bg.png")',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         border: '1px solid var(--glass-border)',
