@@ -10,7 +10,7 @@ const About = () => {
                 <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }}></div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }} className="about-grid">
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -25,13 +25,13 @@ const About = () => {
                         </p>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '2rem', marginTop: '3rem' }}>
+                    <div style={{ display: 'flex', gap: '2rem', marginTop: '3rem', flexWrap: 'wrap' }} className="about-stats">
                         {[
                             { label: 'EXPERIENCE', value: '1.5Y+' },
                             { label: 'DEPLOYMENTS', value: '15+' },
                             { label: 'CLIENTS', value: '08+' }
                         ].map((stat, i) => (
-                            <div key={i}>
+                            <div key={i} style={{ minWidth: '100px' }}>
                                 <h3 style={{ fontSize: '1.8rem', color: 'var(--accent-primary)', marginBottom: '0.2rem' }}>{stat.value}</h3>
                                 <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', letterSpacing: '1px' }}>{stat.label}</p>
                             </div>
@@ -45,6 +45,7 @@ const About = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     style={{ padding: '2rem', border: '1px solid var(--glass-border)', background: 'rgba(255,255,255,0.02)', position: 'relative' }}
+                    className="about-info-card"
                 >
                     <div style={{ position: 'absolute', top: '-1px', left: '20%', width: '60%', height: '2px', background: 'var(--accent-primary)' }}></div>
                     <p style={{ fontSize: '0.95rem', lineHeight: '1.8', color: 'var(--text-secondary)' }}>
@@ -57,7 +58,9 @@ const About = () => {
 
             <style>{`
         @media (max-width: 900px) {
-          section#about div:nth-child(2) { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+          .about-stats { justify-content: center; text-align: center; gap: 1.5rem !important; }
+          .about-info-card { padding: 1.5rem !important; }
         }
       `}</style>
         </section>

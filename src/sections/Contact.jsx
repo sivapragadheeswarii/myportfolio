@@ -38,13 +38,13 @@ const Contact = () => {
                 <span style={{ color: 'var(--accent-primary)', fontSize: '0.9rem', fontWeight: 'bold' }}>// 06</span>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }} className="contact-grid">
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="cyber-card"
+                    className="cyber-card contact-info-card"
                     style={{ position: 'relative', background: 'rgba(114, 47, 55, 0.03)', border: '1px solid var(--glass-border)', padding: '2.5rem' }}
                 >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
@@ -65,7 +65,7 @@ const Contact = () => {
                             { icon: Linkedin, label: 'SOCIAL_LINK', val: 'linkedin/sivapragadheeswari', href: 'https://www.linkedin.com/in/sivapragadheeswari' },
                             { icon: Github, label: 'CODE_VALVE', val: 'github/sivapragadheeswarii', href: 'https://github.com/sivapragadheeswarii' },
                         ].map((item, i) => (
-                            <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', textDecoration: 'none', color: 'inherit', position: 'relative', padding: '0.8rem', borderRadius: '4px' }}>
+                            <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', textDecoration: 'none', color: 'inherit', position: 'relative', padding: '0.8rem', borderRadius: '4px' }} className="contact-item">
                                 {/* Technical Icon Box */}
                                 <motion.div
                                     style={{ 
@@ -79,6 +79,7 @@ const Contact = () => {
                                         position: 'relative',
                                         overflow: 'hidden'
                                     }}
+                                    className="icon-box"
                                     whileHover={{ boxShadow: '0 0 15px rgba(197, 160, 89, 0.2)' }}
                                 >
                                     {/* Scanline Animation */}
@@ -106,7 +107,7 @@ const Contact = () => {
 
                                 <div style={{ flex: 1 }}>
                                     <p style={{ fontSize: '0.65rem', color: 'var(--accent-secondary)', letterSpacing: '2px', marginBottom: '0.2rem', fontWeight: 'bold' }}>{item.label}</p>
-                                    <p style={{ fontSize: '0.95rem', fontWeight: '500', color: 'var(--text-primary)', fontFamily: 'Fira Code' }}>{item.val}</p>
+                                    <p style={{ fontSize: '0.9rem', fontWeight: '500', color: 'var(--text-primary)', fontFamily: 'Fira Code' }} className="contact-val">{item.val}</p>
                                 </div>
                             </a>
                         ))}
@@ -118,7 +119,7 @@ const Contact = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="cyber-card"
+                    className="cyber-card contact-form-card"
                     style={{ background: 'rgba(26,8,8,0.4)', border: '1px solid var(--glass-border)', padding: '2rem' }}
                 >
                     <form ref={form} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }} onSubmit={sendEmail}>
@@ -168,13 +169,20 @@ const Contact = () => {
                 </motion.div>
             </div>
 
-            <style jsx>{`
+            <style>{`
                 .animate-spin {
                     animation: spin 1s linear infinite;
                 }
                 @keyframes spin {
                     from { transform: rotate(0deg); }
                     to { transform: rotate(360deg); }
+                }
+                @media (max-width: 800px) {
+                    .contact-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+                    .contact-info-card, .contact-form-card { padding: 1.5rem !important; }
+                    .contact-val { font-size: 0.8rem !important; }
+                    .contact-item { gap: 1rem !important; padding: 0.5rem !important; }
+                    .icon-box { height: 40px !important; width: 40px !important; }
                 }
             `}</style>
         </section>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Code } from 'lucide-react';
+import sdsTechImg from '../assets/projects/sds_tech.png';
 
 const ProjectCard = ({ title, description, tags, github, live, image, delay }) => (
     <motion.div
@@ -9,7 +10,7 @@ const ProjectCard = ({ title, description, tags, github, live, image, delay }) =
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay }}
         className="cyber-card"
-        style={{ border: '1px solid var(--glass-border)', overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', background: 'rgba(10,10,10,0.95)' }}
+        style={{ border: '1px solid var(--glass-border)', overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', background: 'rgba(31, 4, 7, 0.9)', backdropFilter: 'blur(10px)' }}
         whileHover={{ y: -5, borderColor: 'var(--accent-primary)' }}
     >
         <div style={{ position: 'relative', width: '100%', height: '180px', overflow: 'hidden', borderBottom: '1px solid var(--glass-border)' }}>
@@ -41,12 +42,12 @@ const ProjectCard = ({ title, description, tags, github, live, image, delay }) =
 const Projects = () => {
     const projects = [
         {
-            title: "MERN_COMMERCE_ENGINE",
-            description: "High-performance E-commerce platform with MERN architecture, Stripe integration, and real-time inventory tracking.",
-            tags: ["MongoDB", "Express", "React", "Node"],
-            github: "#",
-            live: "#",
-            // image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=1932&auto=format&fit=crop",
+            title: "SDS_OFFICIAL_PORTAL",
+            description: "The official corporate website for SDS Technologies, a software powerhouse. Built with a full-stack MERN architecture and Tailwind CSS for high-performance service delivery and client engagement.",
+            tags: ["React", "Node", "MongoDB", "Tailwind"],
+            github: "https://github.com/sivapragadheeswarii/sds",
+            live: "https://sds-24l4.vercel.app/",
+            image: sdsTechImg,
             delay: 0.1
         },
         {
@@ -77,11 +78,19 @@ const Projects = () => {
                 <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }}></div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem' }} className="projects-grid">
                 {projects.map((project, index) => (
                     <ProjectCard key={index} {...project} />
                 ))}
             </div>
+
+            <style>{`
+                @media (max-width: 600px) {
+                    .projects-grid { gap: 1.5rem !important; grid-template-columns: 1fr !important; }
+                    .cyber-card h3 { font-size: 0.9rem !important; }
+                    .cyber-card a { padding: 0.6rem 0 !important; width: 50%; justify-content: center; border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; }
+                }
+            `}</style>
         </section>
     );
 };

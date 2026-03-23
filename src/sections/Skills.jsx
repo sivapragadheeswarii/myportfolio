@@ -1,57 +1,171 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Database, Layout, Server, Settings, ShieldCheck, Zap } from 'lucide-react';
+import { 
+    Cpu, Globe, Shield, Terminal, Zap, Layers, 
+    Database, Server, Layout, Settings, Activity,
+    Box, GitBranch, Code2
+} from 'lucide-react';
 
-const SkillModule = ({ icon: Icon, title, skills, delay }) => (
+const BentoCard = ({ children, title, icon: Icon, span = 1 }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay }}
-        className="cyber-card"
-        style={{ transition: 'all 0.3s ease', border: '1px solid var(--glass-border)', borderLeft: '3px solid var(--accent-primary)' }}
-        whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(179, 0, 0, 0.15)', borderColor: 'var(--accent-primary)' }}
+        style={{
+            gridColumn: `span ${span}`,
+            background: 'rgba(25, 4, 7, 0.4)',
+            border: '1px solid rgba(114, 47, 55, 0.2)',
+            borderRadius: '16px',
+            padding: '1.5rem',
+            position: 'relative',
+            overflow: 'hidden',
+            backdropFilter: 'blur(10px)'
+        }}
     >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
-            <Icon size={20} style={{ color: 'var(--accent-primary)' }} />
-            <h3 style={{ fontSize: '0.9rem', letterSpacing: '1px' }}>{title}</h3>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+            <div style={{ padding: '8px', background: 'rgba(114, 47, 55, 0.1)', borderRadius: '8px', color: 'var(--accent-primary)' }}>
+                <Icon size={18} />
+            </div>
+            <h3 style={{ fontSize: '0.9rem', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--text-primary)' }}>
+                {title}
+            </h3>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-            {skills.map((skill) => (
-                <span key={skill} style={{ border: '1px solid rgba(255,255,255,0.1)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', color: 'var(--text-secondary)', background: 'rgba(0,0,0,0.3)' }}>
-                    {skill}
-                </span>
-            ))}
-        </div>
+        {children}
     </motion.div>
 );
 
+const SkillItem = ({ label, level }) => (
+    <div style={{ marginBottom: '1.2rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', fontSize: '0.75rem', fontFamily: 'Fira Code' }}>
+            <span style={{ color: 'var(--text-secondary)' }}>{label}</span>
+            <span style={{ color: 'var(--accent-gold)' }}>{level}%</span>
+        </div>
+        <div style={{ height: '3px', background: 'rgba(255,255,255,0.03)', borderRadius: '2px', overflow: 'hidden' }}>
+            <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: `${level}%` }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                style={{ height: '100%', background: 'var(--accent-primary)' }}
+            />
+        </div>
+    </div>
+);
+
 const Skills = () => {
-    const categories = [
-        { icon: Layout, title: 'UI_ARCHITECTURE', skills: ['React.js', 'Redux Toolkit', 'Framer Motion', 'Tailwind CSS'], delay: 0.1 },
-        { icon: Server, title: 'BACKEND_ENGINE', skills: ['Node.js', 'Express.js', 'RESTful APIs', 'Socket.io'], delay: 0.2 },
-        { icon: Database, title: 'MODERN_LOGIC', skills: ['MongoDB', 'Mongoose', 'Indexing', 'PostgreSQL'], delay: 0.3 },
-        { icon: Settings, title: 'DEV_UTILITIES', skills: ['Git', 'Postman', 'Vite','AWS'], delay: 0.4 },
-        { icon: ShieldCheck, title: 'AUTH_SECURITY', skills: ['JWT', 'Bcrypt', 'CORS','Input Validation','Helmet'], delay: 0.5 },
-        { icon: Zap, title: 'PERFORMANCE_OPT', skills: ['Lazy Loading', 'Caching', 'Asset Minification', 'CDN'], delay: 0.6 },
-        { icon: Server, title: 'CLOUD_DEPLOY', skills: ['AWS', 'Vercel', 'Netlify', 'Docker'], delay: 0.7 },
-        { icon: Settings, title: 'TESTING_SUITE', skills: ['Jest', 'Cypress', 'Mocha', 'Postman'], delay: 0.8 },
-       
-    ];
-
     return (
-        <section id="skills" className="section-padding" style={{ background: 'rgba(0,0,0,0.3)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-                <h2 style={{ fontSize: '2rem' }}>TECH_<span className="gradient-text">MODULES</span></h2>
-                <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }}></div>
-                <span style={{ color: 'var(--accent-primary)', fontSize: '0.9rem', fontWeight: 'bold' }}>// 03</span>
+        <section id="skills" className="section-padding">
+            <div style={{ marginBottom: '4rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--accent-primary)', marginBottom: '0.5rem' }}>
+                    <div style={{ width: '40px', height: '1px', background: 'currentColor' }}></div>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 'bold', letterSpacing: '2px' }}>EXPERT_MATRIX</span>
+                </div>
+                <h2 style={{ fontSize: '3rem', fontWeight: 'bold' }}>
+                    TECHNICAL_<span className="gradient-text">CAPABILITIES</span>
+                </h2>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
-                {categories.map((cat, index) => (
-                    <SkillModule key={cat.title} {...cat} />
-                ))}
+            <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(3, 1fr)', 
+                gap: '1.5rem',
+                minHeight: '600px'
+            }} className="skills-bento">
+                
+                {/* 1. Core Architecture (Main Card) */}
+                <BentoCard title="Core Architecture" icon={Layers} span={2}>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
+                        Architecting high-performance MERN applications with a focus on scalable service patterns and data integrity.
+                    </p>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }} className="skills-grid-inner">
+                        <div>
+                            <SkillItem label="React / Frontend" level={95} />
+                            <SkillItem label="Node / Backend" level={92} />
+                            <SkillItem label="Tailwind / Styling" level={90} />
+                        </div>
+                        <div>
+                            <SkillItem label="MongoDB / Data" level={94} />
+                            <SkillItem label="Express / Logic" level={95} />
+                        </div>
+                    </div>
+                </BentoCard>
+
+                {/* 2. Security Module */}
+                <BentoCard title="Security Core" icon={Shield}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        {[
+                            { name: 'JWT Architecture', status: 'Verfied' },
+                            { name: 'OAuth 2.0 Integration', status: 'Verfied' },
+                            { name: 'Bcrypt Encryption', status: 'Verfied' },
+                            { name: 'Input Shielding', status: 'Verfied' }
+                        ].map((s, i) => (
+                            <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.03)' }}>
+                                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{s.name}</span>
+                                <div style={{ width: '6px', height: '6px', background: '#4caf50', borderRadius: '50%', boxShadow: '0 0 10px #4caf50' }}></div>
+                            </div>
+                        ))}
+                    </div>
+                </BentoCard>
+
+                {/* 3. Dev Workflow */}
+                <BentoCard title="Engineering Workflow" icon={Settings}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                        {[
+                            { name: 'Git/GitHub', icon: GitBranch },
+                            { name: 'Vite/ESBuild', icon: Zap },
+                            { name: 'Postman/API', icon: Terminal },
+                            { name: 'NPM/Deployment', icon: Box }
+                        ].map((t, i) => (
+                            <div key={i} style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>
+                                <t.icon size={20} style={{ color: 'var(--accent-primary)', marginBottom: '8px' }} />
+                                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{t.name}</div>
+                            </div>
+                        ))}
+                    </div>
+                </BentoCard>
+
+                {/* 4. Infrastructure Stats */}
+                <BentoCard title="Architecture Metrics" icon={Activity} span={2}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.5rem', height: '100%' }} className="metrics-grid">
+                        {[
+                            { label: 'System Uptime', value: '99.9%', desc: 'SLA Mentality' },
+                            { label: 'Clean Code', value: '100%', desc: 'SOLID Principles' },
+                            { label: 'Security Score', value: 'A+', desc: 'Hardened Logic' }
+                        ].map((stat, i) => (
+                            <div key={i} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }} className="metric-item">
+                                <div style={{ fontSize: '0.7rem', color: 'var(--accent-primary)', textTransform: 'uppercase', marginBottom: '5px' }}>{stat.label}</div>
+                                <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{stat.value}</div>
+                                <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', opacity: 0.6 }}>{stat.desc}</div>
+                            </div>
+                        ))}
+                    </div>
+                </BentoCard>
             </div>
+
+            <style>{`
+                @media (max-width: 1000px) {
+                    .skills-bento { 
+                        grid-template-columns: 1fr !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                    }
+                    .skills-bento > div { grid-column: span 1 !important; }
+                    .metrics-grid { 
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                    }
+                    .metric-item {
+                        border-right: none !important;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
+                        padding-bottom: 1.5rem;
+                    }
+                    .metric-item:last-child { border-bottom: none; }
+                    
+                    /* Stack Core Architecture skills in 1 column on tablet/mobile */
+                    .skills-grid-inner { 
+                        grid-template-columns: 1fr !important;
+                        gap: 1.5rem !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };
