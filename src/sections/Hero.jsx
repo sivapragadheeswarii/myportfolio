@@ -229,33 +229,64 @@ const Hero = () => {
                     padding-top: 100px;
                     padding-left: 8%;
                     padding-right: 8%;
+                    overflow-x: hidden;
+                }
+
+                .hero-name {
+                    overflow-wrap: break-word;
+                    word-wrap: break-word;
+                    hyphens: auto;
+                    white-space: normal !important;
                 }
 
                 @media (max-width: 1100px) {
                     .hero-section { padding-top: 120px; }
-                    .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 4rem; }
-                    .hero-grid > div { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+                    .hero-grid { 
+                        display: flex !important;
+                        flex-direction: column !important;
+                        text-align: center; 
+                        gap: 3rem; 
+                    }
+                    .hero-grid > div { 
+                        display: flex; 
+                        flex-direction: column; 
+                        align-items: center; 
+                        justify-content: center;
+                        width: 100% !important;
+                    }
                     .hero-grid > div:last-child { order: -1; }
-                    .hero-name { font-size: clamp(1.8rem, 10vw, 3.5rem) !important; letter-spacing: -0.5px !important; }
+                    .hero-name { 
+                        font-size: clamp(1.8rem, 10vw, 3.5rem) !important; 
+                        letter-spacing: -0.5px !important;
+                        max-width: 100%;
+                    }
                 }
 
                 @media (max-width: 768px) {
-                    .hero-section { padding-left: 5%; padding-right: 5%; padding-top: 100px; }
+                    .hero-section { padding-left: 6%; padding-right: 6%; padding-top: 110px; }
                 }
 
                 @media (max-width: 600px) {
-                    .hero-grid > div:last-child { transform: scale(0.8); }
-                    .hero-name { 
-                        font-size: clamp(1.6rem, 12vw, 2.8rem) !important; 
-                        letter-spacing: -0.5px !important;
-                        margin-bottom: 2rem !important;
+                    .hero-grid > div:last-child { 
+                        transform: scale(0.75); 
+                        margin-bottom: -20px;
                     }
-                    .hero-section { padding-top: 90px; }
+                    .hero-name { 
+                        font-size: clamp(1.5rem, 11vw, 2.5rem) !important; 
+                        line-height: 1.2 !important;
+                        letter-spacing: -0.5px !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .hero-section { padding-top: 100px; }
                 }
 
                 @media (max-width: 400px) {
-                    .hero-grid > div:last-child { transform: scale(0.7); margin-bottom: -40px; }
-                    .hero-name { font-size: 1.8rem !important; }
+                    .hero-grid > div:last-child { 
+                        transform: scale(0.65); 
+                        margin-bottom: -50px; 
+                    }
+                    .hero-name { font-size: 1.7rem !important; }
+                    .hero-section { padding-left: 4%; padding-right: 4%; }
                 }
             `}</style>
         </section>

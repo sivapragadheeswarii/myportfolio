@@ -170,6 +170,13 @@ const Skills = () => {
                         gap: 1.2rem !important;
                     }
                 }
+
+                @media (max-width: 600px) {
+                    section h2 { 
+                        font-size: clamp(1.4rem, 10vw, 2.2rem) !important; 
+                        overflow-wrap: break-word;
+                    }
+                }
             `}</style>
         </section>
     );

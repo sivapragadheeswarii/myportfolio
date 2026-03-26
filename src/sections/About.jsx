@@ -63,10 +63,16 @@ const About = () => {
                     .about-info-card { padding: 1.5rem !important; }
                 }
                 @media (max-width: 600px) {
-                    .about-grid h2 { font-size: 1.8rem !important; }
+                    .about-grid h2 { 
+                        font-size: clamp(1.4rem, 10vw, 2.2rem) !important; 
+                        overflow-wrap: break-word;
+                    }
                     .cyber-card p { font-size: 0.9rem !important; }
                     .about-info-card p { font-size: 0.85rem !important; }
                     .about-stats div h3 { font-size: 1.5rem !important; }
+                }
+                @media (max-width: 400px) {
+                    .about-grid h2 { font-size: 1.6rem !important; }
                 }
             `}</style>
         </section>

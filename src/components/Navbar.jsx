@@ -68,15 +68,18 @@ const Navbar = () => {
 
     return (
         <>
-            <div style={{ 
-                position: 'fixed', 
-                top: '25px', 
-                left: '50%', 
-                transform: 'translateX(-50%)', 
-                zIndex: 3000,
-                width: 'auto',
-                minWidth: 'max-content'
-            }}>
+            <div 
+                className="navbar-wrapper"
+                style={{ 
+                    position: 'fixed', 
+                    top: '25px', 
+                    left: '50%', 
+                    transform: 'translateX(-50%)', 
+                    zIndex: 3000,
+                    width: 'auto',
+                    minWidth: 'max-content'
+                }}
+            >
                 <motion.nav 
                     initial={{ y: -50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -132,10 +135,9 @@ const Navbar = () => {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: -20 }}
                             style={{
-                                position: 'absolute',
-                                top: '80px',
-                                left: "50%",
-                                x: "-50%",
+                                position: 'fixed',
+                                top: '85px',
+                                right: '20px',
                                 width: 'min(320px, 90vw)',
                                 background: 'rgba(26, 9, 13, 0.98)',
                                 backdropFilter: 'blur(30px)',
@@ -205,8 +207,13 @@ const Navbar = () => {
 
                 <style>{`
                     @media (max-width: 800px) {
+                        .navbar-wrapper {
+                            left: auto !important;
+                            right: 20px !important;
+                            transform: none !important;
+                        }
                         .desktop-nav-capsule { display: none !important; }
-                        .mobile-toggle-capsule { display: block !important; }
+                        .mobile-toggle-capsule { display: block !important; padding: 8px 16px !important; }
                         .desktop-connect-pill { display: none !important; }
                     }
                 `}</style>
