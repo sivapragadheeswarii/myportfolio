@@ -70,7 +70,7 @@ const Skills = () => {
                 minHeight: '600px'
             }} className="skills-bento">
                 
-                {/* 1. Core Architecture (Main Card) */}
+             
                 <BentoCard title="Core Architecture" icon={Layers} span={2}>
                     <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
                         Architecting high-performance MERN applications with a focus on scalable service patterns and data integrity.
@@ -88,7 +88,7 @@ const Skills = () => {
                     </div>
                 </BentoCard>
 
-                {/* 2. Security Module */}
+          
                 <BentoCard title="Security Core" icon={Shield}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         {[
@@ -105,7 +105,7 @@ const Skills = () => {
                     </div>
                 </BentoCard>
 
-                {/* 3. Dev Workflow */}
+             
                 <BentoCard title="Engineering Workflow" icon={Settings}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                         {[
@@ -122,7 +122,7 @@ const Skills = () => {
                     </div>
                 </BentoCard>
 
-                {/* 4. Infrastructure Stats */}
+              
                 <BentoCard title="Architecture Metrics" icon={Activity} span={2}>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.5rem', height: '100%' }} className="metrics-grid">
                         {[
@@ -141,28 +141,33 @@ const Skills = () => {
             </div>
 
             <style>{`
-                @media (max-width: 1000px) {
+                @media (max-width: 1100px) {
+                    .skills-bento { 
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 1.2rem !important;
+                    }
+                    .skills-bento > div { grid-column: span 1 !important; }
+                    .skills-bento > div:first-child { grid-column: span 2 !important; }
+                }
+
+                @media (max-width: 768px) {
                     .skills-bento { 
                         grid-template-columns: 1fr !important;
                         display: flex !important;
                         flex-direction: column !important;
                     }
-                    .skills-bento > div { grid-column: span 1 !important; }
                     .metrics-grid { 
                         grid-template-columns: 1fr !important;
-                        gap: 2rem !important;
+                        gap: 1.5rem !important;
                     }
                     .metric-item {
-                        border-right: none !important;
                         border-bottom: 1px solid rgba(255,255,255,0.05);
-                        padding-bottom: 1.5rem;
+                        padding-bottom: 1.2rem;
                     }
                     .metric-item:last-child { border-bottom: none; }
-                    
-                    /* Stack Core Architecture skills in 1 column on tablet/mobile */
                     .skills-grid-inner { 
                         grid-template-columns: 1fr !important;
-                        gap: 1.5rem !important;
+                        gap: 1.2rem !important;
                     }
                 }
             `}</style>

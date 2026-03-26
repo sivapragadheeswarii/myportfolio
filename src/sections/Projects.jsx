@@ -2,37 +2,41 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Code } from 'lucide-react';
 import sdsTechImg from '../assets/projects/sds_tech.png';
+import hospitalMgmtImg from '../assets/projects/hospital_mgmt.png';
+import careerPortalImg from '../assets/projects/career_portal.png';
 
 const ProjectCard = ({ title, description, tags, github, live, image, delay }) => (
     <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, delay }}
-        className="cyber-card"
-        style={{ border: '1px solid var(--glass-border)', overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', background: 'rgba(31, 4, 7, 0.9)', backdropFilter: 'blur(10px)' }}
-        whileHover={{ y: -5, borderColor: 'var(--accent-primary)' }}
+        transition={{ duration: 0.6, delay }}
+        className="project-card-luxury"
+        whileTap={{ borderColor: '#FFFFFF', scale: 0.97 }}
     >
-        <div style={{ position: 'relative', width: '100%', height: '180px', overflow: 'hidden', borderBottom: '1px solid var(--glass-border)' }}>
-            <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.7, filter: 'grayscale(0.3)' }} />
-            <div style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '5px' }}>
-                {tags.slice(0, 2).map(tag => (
-                    <span key={tag} style={{ padding: '0.1rem 0.4rem', border: '1px solid var(--accent-primary)', color: 'var(--accent-primary)', fontSize: '0.6rem', fontWeight: 'bold', background: 'rgba(0,0,0,0.8)' }}>{tag}</span>
+        <div className="project-image-container" style={{ pointerEvents: 'none' }}>
+            {image ? (
+                <img src={image} alt={title} className="project-image" />
+            ) : (
+                <div className="project-image-placeholder">
+                    <Code size={40} strokeWidth={1} />
+                </div>
+            )}
+            <div className="project-tags">
+                {tags.map(tag => (
+                    <span key={tag} className="project-tag">{tag}</span>
                 ))}
             </div>
         </div>
-        <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem' }}>
-                <Code size={16} style={{ color: 'var(--accent-primary)' }} />
-                <h3 style={{ fontSize: '1rem', letterSpacing: '1px', textTransform: 'uppercase' }}>{title}</h3>
-            </div>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: '1.6', marginBottom: '1.5rem', flex: 1 }}>{description}</p>
-            <div style={{ display: 'flex', gap: '1.5rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1rem' }}>
-                <a href={github} style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                    <Github size={14} /> SRC_CODE
+        <div className="project-content">
+            <h3 className="project-title" style={{ pointerEvents: 'none' }}>{title}</h3>
+            <p className="project-description" style={{ pointerEvents: 'none' }}>{description}</p>
+            <div className="project-actions" style={{ pointerEvents: 'auto' }}>
+                <a href={github} target="_blank" rel="noopener noreferrer" className="project-link">
+                    <Github size={16} /> <span>Code</span>
                 </a>
-                <a href={live} style={{ color: 'var(--accent-primary)', textDecoration: 'none', fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                    <ExternalLink size={14} /> LIVE_VIEW
+                <a href={live} target="_blank" rel="noopener noreferrer" className="project-link live">
+                    <ExternalLink size={16} /> <span>Live Demo</span>
                 </a>
             </div>
         </div>
@@ -42,40 +46,40 @@ const ProjectCard = ({ title, description, tags, github, live, image, delay }) =
 const Projects = () => {
     const projects = [
         {
-            title: "SDS_OFFICIAL_PORTAL",
-            description: "The official corporate website for SDS Technologies, a software powerhouse. Built with a full-stack MERN architecture and Tailwind CSS for high-performance service delivery and client engagement.",
-            tags: ["React", "Node", "MongoDB", "Tailwind"],
+            title: "SDS Technologies",
+            description: "The official corporate hub for SDS Technologies. A premium MERN-stack platform engineered for high-performance service delivery, featuring a sophisticated glassmorphic UI and seamless client engagement modules.",
+            tags: ["React", "Node.js", "MongoDB", "Express"],
             github: "https://github.com/sivapragadheeswarii/sds",
             live: "https://sds-24l4.vercel.app/",
             image: sdsTechImg,
             delay: 0.1
         },
         {
-            title: "SOCKET_CHAT_UPLINK",
-            description: "Real-time communication protocol built on MERN, featuring end-to-end encryption and WebSocket synchronization.",
-            tags: ["Socket.io", "Express", "React"],
-            github: "#",
+            title: "Hospital Management System",
+            description: "A comprehensive healthcare ecosystem designed for multi-role management. Features distinct portals for Admins, Doctors, and Patients, streamlining appointments and medical records with real-time sync.",
+            tags: ["Tailwind", "ReactJS", "Node", "MongoDB"],
+            github: "https://github.com/sivapragadheeswarii/healthcare-mgt",
             live: "#",
-            // image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=2070&auto=format&fit=crop",
+            image: hospitalMgmtImg,
             delay: 0.2
         },
         {
-            title: "DATA_VISUAL_CORE",
-            description: "Advanced analytics dashboard for MERN applications, visualising complex data streams via D3.js and Recharts.",
-            tags: ["React", "D3.js", "Node"],
-            github: "#",
+            title: "AI Career Portal",
+            description: "A sophisticated recruitment ecosystem powered by AI. Features intelligent job matching, automated candidate screening, and real-time interview coordination, built with a robust MERN stack and Tailwind CSS.",
+            tags: ["React", "Tailwind", "Node", "MongoDB"],
+            github: "https://github.com/sivapragadheeswarii/ai-career-hub",
             live: "#",
-            // image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop",
+            image: careerPortalImg,
             delay: 0.3
         }
     ];
 
     return (
         <section id="projects" className="section-padding" style={{ position: 'relative' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-                <span style={{ color: 'var(--accent-primary)', fontSize: '0.9rem', fontWeight: 'bold' }}>// 05</span>
-                <h2 style={{ fontSize: '2rem' }}>PROJECT_<span className="gradient-text">ARCHIVE</span></h2>
-                <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }}></div>
+            <div className="projects-header-luxury">
+                <span className="section-subtitle">Portfolio</span>
+                <h2 className="section-title">Case <span className="gradient-text">Studies</span></h2>
+                <div className="section-divider"></div>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem' }} className="projects-grid">
@@ -85,10 +89,168 @@ const Projects = () => {
             </div>
 
             <style>{`
+                .projects-header-luxury {
+                    margin-bottom: 4rem;
+                }
+
+                .section-subtitle {
+                    display: block;
+                    color: var(--accent-primary);
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 4px;
+                    margin-bottom: 0.5rem;
+                }
+
+                .section-title {
+                    font-size: 3rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .section-divider {
+                    width: 60px;
+                    height: 3px;
+                    background: var(--accent-primary);
+                    border-radius: 2px;
+                }
+
+                .project-card-luxury {
+                    background: rgba(26, 9, 13, 0.4);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid var(--glass-border);
+                    border-radius: 24px;
+                    overflow: hidden;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                .project-card-luxury:hover {
+                    transform: translateY(-10px);
+                    border-color: var(--accent-gold);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                                0 0 20px rgba(139, 30, 63, 0.2);
+                }
+
+                .project-card-luxury:active {
+                    border-color: #FFFFFF !important;
+                    transform: scale(0.97) translateY(-10px) !important;
+                    transition: all 0.1s ease;
+                }
+
+                .project-image-container {
+                    position: relative;
+                    height: 220px;
+                    overflow: hidden;
+                    background: var(--bg-secondary);
+                }
+
+                .project-image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.7s ease;
+                }
+
+                .project-card-luxury:hover .project-image {
+                    transform: scale(1.1);
+                }
+
+                .project-image-placeholder {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--accent-primary);
+                    opacity: 0.3;
+                }
+
+                .project-tags {
+                    position: absolute;
+                    bottom: 1.5rem;
+                    left: 1.5rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.5rem;
+                }
+
+                .project-tag {
+                    padding: 0.3rem 0.8rem;
+                    background: rgba(0, 0, 0, 0.7);
+                    backdrop-filter: blur(8px);
+                    border: 1px solid rgba(243, 229, 171, 0.2);
+                    color: var(--accent-gold);
+                    border-radius: 100px;
+                    font-size: 0.7rem;
+                    font-weight: 500;
+                }
+
+                .project-content {
+                    padding: 2.5rem;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .project-title {
+                    font-size: 1.6rem;
+                    margin-bottom: 1rem;
+                    color: var(--text-primary);
+                }
+
+                .project-description {
+                   color: var(--text-secondary);
+                   font-size: 0.95rem;
+                   line-height: 1.7;
+                   margin-bottom: 2rem;
+                   flex: 1;
+                }
+
+                .project-actions {
+                    display: flex;
+                    gap: 2rem;
+                    padding-top: 1.5rem;
+                    border-top: 1px solid var(--glass-border);
+                }
+
+                .project-link {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.6rem;
+                    color: var(--text-secondary);
+                    text-decoration: none;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+                }
+
+                .project-link:hover {
+                    color: var(--accent-gold);
+                    transform: translateX(3px);
+                }
+
+                .project-link.live {
+                    color: var(--accent-primary);
+                }
+
+                .project-link.live:hover {
+                    color: var(--accent-gold);
+                }
+
+                @media (max-width: 992px) {
+                    .section-title { font-size: 2.5rem; }
+                    .project-content { padding: 2rem; }
+                }
+
                 @media (max-width: 600px) {
                     .projects-grid { gap: 1.5rem !important; grid-template-columns: 1fr !important; }
-                    .cyber-card h3 { font-size: 0.9rem !important; }
-                    .cyber-card a { padding: 0.6rem 0 !important; width: 50%; justify-content: center; border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; }
+                    .section-title { font-size: 2.2rem !important; }
+                    .project-title { font-size: 1.4rem; }
+                    .project-description { font-size: 0.85rem; }
+                    .project-image-container { height: 180px; }
                 }
             `}</style>
         </section>

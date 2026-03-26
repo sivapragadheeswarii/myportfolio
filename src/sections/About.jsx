@@ -57,12 +57,18 @@ const About = () => {
             </div>
 
             <style>{`
-        @media (max-width: 900px) {
-          .about-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-          .about-stats { justify-content: center; text-align: center; gap: 1.5rem !important; }
-          .about-info-card { padding: 1.5rem !important; }
-        }
-      `}</style>
+                @media (max-width: 900px) {
+                    .about-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+                    .about-stats { justify-content: center; text-align: center; gap: 1.5rem !important; }
+                    .about-info-card { padding: 1.5rem !important; }
+                }
+                @media (max-width: 600px) {
+                    .about-grid h2 { font-size: 1.8rem !important; }
+                    .cyber-card p { font-size: 0.9rem !important; }
+                    .about-info-card p { font-size: 0.85rem !important; }
+                    .about-stats div h3 { font-size: 1.5rem !important; }
+                }
+            `}</style>
         </section>
     );
 };

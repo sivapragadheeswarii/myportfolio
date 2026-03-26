@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg-primary: #0A0102; /* Void Black-Red */
-  --bg-secondary: #1F0407; /* Deep Merlot */
-  --accent-primary: #722F37; /* Wine Red */
-  --accent-secondary: #913831; /* Deep Crimson */
-  --accent-gold: #E63946; /* Luminous Crimson (Replaced Gold) */
-  --text-primary: #FFF0F0;
-  --text-secondary: #BFA8A9;
-  --glass-bg: rgba(10, 1, 2, 0.85);
-  --glass-border: rgba(114, 47, 55, 0.4);
+  --bg-primary: #1A090D; /* Deep Redwine Black */
+  --bg-secondary: #2D1015; /* Rich Redwine */
+  --accent-primary: #8B1E3F; /* Deep Wine Red */
+  --accent-secondary: #A02E4E; /* Lighter Redwine */
+  --accent-gold: #F3E5AB; /* Elegant Cream */
+  --text-primary: #FFF8E7; /* Cosmic Latte Cream */
+  --text-secondary: #D7C4BB; /* Muted Cream Rose */
+  --glass-bg: rgba(26, 9, 13, 0.85);
+  --glass-border: rgba(139, 30, 63, 0.4);
   --nav-height: 70px;
   --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -70,8 +70,8 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
-    linear-gradient(90deg, rgba(179, 0, 0, 0.03), rgba(139, 69, 19, 0.02), rgba(255, 0, 0, 0.03));
+  background: linear-gradient(rgba(45, 16, 21, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
+    linear-gradient(90deg, rgba(139, 30, 63, 0.03), rgba(243, 229, 171, 0.02), rgba(139, 30, 63, 0.03));
   background-size: 100% 4px, 3px 100%;
   z-index: 1000;
   pointer-events: none;
@@ -214,4 +214,9 @@ h4,
   background: rgba(179, 0, 0, 0.2);
   animation: scanline 10s linear infinite;
   pointer-events: none;
+}
+
+.profile-img-hover:hover {
+  transform: scale(1.1);
+  filter: contrast(1.1) brightness(1.1) saturate(1) !important;
 }

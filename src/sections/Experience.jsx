@@ -10,6 +10,7 @@ const ExperienceCard = ({ role, company, period, description, tech, index }) => 
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: index * 0.1 }}
+        className="experience-card"
         style={{
             background: 'rgba(25, 4, 7, 0.4)',
             border: '1px solid rgba(114, 47, 55, 0.2)',
@@ -18,13 +19,12 @@ const ExperienceCard = ({ role, company, period, description, tech, index }) => 
             marginBottom: '2rem',
             position: 'relative',
             backdropFilter: 'blur(10px)',
-            marginLeft: '40px'
         }}
     >
         {/* Timeline Bullet */}
-        <div style={{
+        <div className="timeline-bullet" style={{
             position: 'absolute',
-            left: '-52px',
+            left: '-48px',
             top: '32px',
             width: '24px',
             height: '24px',
@@ -62,7 +62,6 @@ const ExperienceCard = ({ role, company, period, description, tech, index }) => 
             ))}
         </ul>
 
-        {/* Tech Registry */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1.5rem' }}>
             {tech.map((t, i) => (
                 <span key={i} style={{ fontSize: '0.65rem', color: 'var(--accent-gold)', background: 'rgba(255,204,0,0.05)', padding: '4px 10px', borderRadius: '4px', border: '1px solid rgba(219, 182, 11, 0.2)', fontFamily: 'Fira Code' }}>
@@ -110,30 +109,73 @@ const Experience = () => {
                 </h2>
             </div>
 
-            <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
+            <div className="experience-container">
                 {/* Timeline Axis */}
-                <div style={{
-                    position: 'absolute',
-                    left: '0',
-                    top: '0',
-                    bottom: '0',
-                    width: '2px',
-                    background: 'linear-gradient(to bottom, transparent, var(--accent-primary), transparent)',
-                    opacity: 0.3
-                }}></div>
+                <div className="timeline-axis"></div>
 
                 {experiences.map((exp, index) => (
                     <ExperienceCard key={index} {...exp} index={index} />
                 ))}
             </div>
 
-            {/* Verification Tag */}
-            <div style={{ textAlign: 'center', marginTop: '4rem', opacity: 0.3 }}>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
-                    <Shield size={12} />
-                   
-                </div>
-            </div>
+            <style>{`
+                .experience-container {
+                    max-width: 900px;
+                    margin: 0 auto;
+                    position: relative;
+                }
+
+                .timeline-axis {
+                    position: absolute;
+                    left: 2px;
+                    top: 0;
+                    bottom: 0;
+                    width: 2px;
+                    background: linear-gradient(to bottom, transparent, var(--accent-primary), transparent);
+                    opacity: 0.3;
+                }
+
+                .experience-card {
+                    margin-left: 52px;
+                }
+
+                @media (max-width: 768px) {
+                    .experience-card {
+                        margin-left: 35px;
+                        padding: 1.5rem !important;
+                    }
+                    .timeline-bullet {
+                        left: -38px !important;
+                        width: 20px !important;
+                        height: 20px !important;
+                    }
+                    .timeline-axis {
+                       left: 10px !important;
+                    }
+                    section h2 {
+                        font-size: 2.2rem !important;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .experience-card {
+                        margin-left: 25px;
+                        padding: 1.2rem !important;
+                    }
+                    .timeline-bullet {
+                        left: -32px !important;
+                        width: 16px !important;
+                        height: 16px !important;
+                    }
+                    .timeline-bullet > div {
+                        width: 6px !important;
+                        height: 6px !important;
+                    }
+                    .timeline-axis {
+                        left: 10px !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

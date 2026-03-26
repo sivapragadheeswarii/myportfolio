@@ -8,57 +8,43 @@ const NavItem = ({ name, href, index }) => {
     return (
         <motion.a
             href={href}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 + index * 0.1 }}
+            className="nav-item-capsule"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
             style={{
                 textDecoration: 'none',
-                color: isHovered ? 'var(--accent-gold)' : 'var(--text-primary)',
-                fontSize: '0.85rem',
-                fontWeight: '500',
+                color: isHovered ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                fontSize: '0.8rem',
+                fontWeight: '600',
+                fontFamily: 'Fira Code, monospace',
+                transition: 'all 0.3s ease',
+                padding: '0.5rem 1rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '4px',
-                fontFamily: 'Fira Code, monospace',
-                position: 'relative',
-                transition: 'color 0.2s ease'
+                position: 'relative'
             }}
         >
             <motion.span
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
-                style={{ color: 'var(--accent-primary)', fontSize: '10px' }}
-            >
-                [
-            </motion.span>
+                initial={{ opacity: 0, x: -5 }}
+                animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -5 }}
+                style={{ color: 'var(--accent-primary)' }}
+            >[</motion.span>
+            <span>{name}</span>
+            <motion.span
+                initial={{ opacity: 0, x: 5 }}
+                animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 5 }}
+                style={{ color: 'var(--accent-primary)' }}
+            >]</motion.span>
             
-            <motion.span
-                animate={isHovered ? {
-                    x: [0, -2, 2, 0],
-                    transition: { duration: 0.2, repeat: Infinity }
-                } : {}}
-            >
-                {isHovered && <span style={{ color: 'var(--accent-gold)', marginRight: '2px' }}>&gt;</span>}
-                {name}
-            </motion.span>
-
-            <motion.span
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 10 }}
-                style={{ color: 'var(--accent-primary)', fontSize: '10px' }}
-            >
-                ]
-            </motion.span>
-
-            {isHovered && (
-                <motion.span
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ duration: 0.8, repeat: Infinity }}
-                    style={{ position: 'absolute', bottom: '-4px', left: 0, width: '100%', height: '1px', background: 'var(--accent-gold)' }}
-                />
-            )}
+            {/* Click Ripple Effect Placeholder style */}
+            <motion.div
+                whileTap={{ scale: 0.95 }}
+                style={{ position: 'absolute', inset: 0, borderRadius: '999px', background: 'rgba(139, 30, 63, 0.1)' }}
+            />
         </motion.a>
     );
 };
@@ -74,135 +60,196 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Home', href: '#home', code: '01' },
-        { name: 'About', href: '#about', code: '02' },
-        { name: 'Skills', href: '#skills', code: '03' },
-        { name: 'Experience', href: '#experience', code: '04' },
-        { name: 'Projects', href: '#projects', code: '05' },
-        { name: 'Contact', href: '#contact', code: '06' },
+        { name: 'Home', href: '#home' },
+        { name: 'About', href: '#about' },
+        { name: 'Experience', href: '#experience' },
+        { name: 'Works', href: '#projects' },
     ];
 
     return (
-        <nav 
-            className={`transition-all duration-300 ${isScrolled ? 'glass' : ''}`}
-            style={{ 
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                zIndex: 2000,
-                height: 'var(--nav-height)', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'space-between', 
-                padding: '0 5%',
-                background: isScrolled ? 'var(--glass-bg)' : 'rgba(8, 4, 5, 0.4)',
-                backdropFilter: 'blur(10px)',
-                borderBottom: isScrolled ? '1px solid var(--glass-border)' : '1px solid rgba(255,255,255,0.05)'
+        <>
+            <div style={{ 
+                position: 'fixed', 
+                top: '25px', 
+                left: '50%', 
+                transform: 'translateX(-50%)', 
+                zIndex: 3000,
+                width: 'auto',
+                minWidth: 'max-content'
             }}>
-
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="heading-font"
-                style={{ fontSize: '1.2rem', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--accent-gold)', fontFamily: 'Fira Code, monospace', zIndex: 100 }}
-            >
-                <Terminal size={20} style={{ color: 'var(--accent-primary)' }} />
-                <span style={{ letterSpacing: '-0.5px' }}>SIVA.DEV</span>
-            </motion.div>
-
-            {/* Desktop Navigation */}
-            <div style={{ display: 'flex', gap: '1.8rem', alignItems: 'center' }} className="desktop-nav">
-                {navLinks.map((link, index) => (
-                    <NavItem key={link.name} name={link.name} href={link.href} index={index} />
-                ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', zIndex: 100 }}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }} className="social-links-nav">
-                    <a href="https://github.com/sivapragadheeswarii" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', transition: 'color 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-gold)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Github size={18} /></a>
-                    <a href="https://www.linkedin.com/in/sivapragadheeswari" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', transition: 'color 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-gold)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Linkedin size={18} /></a>
-                </div>
-                
-                <div style={{ padding: '0.5rem 1rem', border: '1px solid var(--accent-gold)', fontSize: '0.75rem', color: 'var(--accent-gold)', background: 'rgba(230, 57, 70, 0.05)', borderRadius: '2px', fontFamily: 'Fira Code' }} className="est-box">
-                    EST. 2026
-                </div>
-
-                {/* Mobile Menu Toggle */}
-                <button 
-                    className="mobile-toggle"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    style={{ background: 'transparent', border: 'none', color: 'var(--accent-gold)', cursor: 'pointer', display: 'none', alignItems: 'center', justifyContent: 'center' }}
+                <motion.nav 
+                    initial={{ y: -50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        background: 'rgba(26, 9, 13, 0.8)',
+                        backdropFilter: 'blur(20px)',
+                        border: '1px solid rgba(139, 30, 63, 0.3)',
+                        borderRadius: '999px',
+                        padding: '6px 8px',
+                        gap: '0.5rem',
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.6)'
+                    }}
                 >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
+                    
 
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {mobileMenuOpen && (
-                    <motion.div
-                        initial={{ x: '100%' }}
-                        animate={{ x: 0 }}
-                        exit={{ x: '100%' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        style={{
-                            position: 'fixed',
-                            top: 0,
-                            right: 0,
-                            width: '100%',
-                            height: '100vh',
-                            background: 'var(--bg-primary)',
-                            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(114, 47, 55, 0.15) 1px, transparent 0)',
-                            backgroundSize: '40px 40px',
-                            zIndex: 2100,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            gap: '2rem',
-                            padding: '2rem'
-                        }}
-                    >
+                    {/* Desktop Nav Links */}
+                    <div style={{ display: 'flex', alignItems: 'center', paddingRight: '12px', background: 'transparent' }} className="desktop-nav-capsule">
                         {navLinks.map((link, index) => (
-                            <motion.a
-                                key={link.name}
-                                href={link.href}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                onClick={() => setMobileMenuOpen(false)}
-                                style={{
-                                    textDecoration: 'none',
-                                    color: 'var(--text-primary)',
-                                    fontSize: '1.5rem',
-                                    fontFamily: 'Playfair Display',
-                                    fontWeight: '700',
-                                    letterSpacing: '2px'
-                                }}
-                            >
-                                <span style={{ color: 'var(--accent-primary)', marginRight: '1rem', fontStyle: 'italic', fontSize: '1rem' }}>{link.code}</span>
-                                {link.name.toUpperCase()}
-                            </motion.a>
+                            <NavItem key={link.name} name={link.name} href={link.href} index={index} />
                         ))}
                         
-                        <div style={{ marginTop: '3rem', width: '100px', height: '1px', background: 'var(--accent-crimson)', opacity: 0.3 }}></div>
-                        
-                        <div style={{ display: 'flex', gap: '2rem' }}>
-                            <a href="https://github.com/sivapragadheeswarii" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-gold)' }}><Github size={24} /></a>
-                            <a href="https://www.linkedin.com/in/sivapragadheeswari" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-gold)' }}><Linkedin size={24} /></a>
+                        {/* Social Mini Icons */}
+                        <div style={{ marginLeft: '1rem', display: 'flex', gap: '0.8rem', borderLeft: '1px solid rgba(139,30,63,0.2)', paddingLeft: '1rem', background: 'transparent' }}>
+                            <motion.a whileHover={{ scale: 1.2, color: 'var(--accent-gold)' }} href="https://github.com/sivapragadheeswarii" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}><Github size={16} /></motion.a>
+                            <motion.a whileHover={{ scale: 1.2, color: 'var(--accent-gold)' }} href="https://linkedin.com/in/sivapragadheeswari" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}><Linkedin size={16} /></motion.a>
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    </div>
 
-            <style>{`
-                @media (max-width: 900px) {
-                    .desktop-nav, .est-box, .social-links-nav { display: none !important; }
-                    .mobile-toggle { display: flex !important; }
-                }
-            `}</style>
-        </nav>
+                    {/* Mobile Toggle Button (Responsive) */}
+                    <button 
+                        className="mobile-toggle-capsule"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        style={{ 
+                            background: 'transparent', 
+                            border: 'none', 
+                            color: 'var(--text-primary)', 
+                            padding: '0 12px',
+                            cursor: 'pointer',
+                            display: 'none'
+                        }}
+                    >
+                        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                    </button>
+                </motion.nav>
+
+                {/* Mobile Menu (Floating Sheet) */}
+                <AnimatePresence>
+                    {mobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: -20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                            style={{
+                                position: 'absolute',
+                                top: '80px',
+                                left: "50%",
+                                x: "-50%",
+                                width: 'min(320px, 90vw)',
+                                background: 'rgba(26, 9, 13, 0.98)',
+                                backdropFilter: 'blur(30px)',
+                                border: '1px solid var(--accent-primary)',
+                                borderRadius: '24px',
+                                padding: '2rem',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '1rem',
+                                boxShadow: '0 30px 60px rgba(0,0,0,0.9), 0 0 20px rgba(139, 30, 63, 0.2)',
+                                zIndex: 4000
+                            }}
+                        >
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                {navLinks.map((link) => (
+                                    <motion.a 
+                                        key={link.name} 
+                                        href={link.href} 
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        whileTap={{ scale: 0.95, x: 5 }}
+                                        style={{ 
+                                            color: 'var(--text-primary)', 
+                                            textDecoration: 'none', 
+                                            fontSize: '1.1rem', 
+                                            fontWeight: '600',
+                                            padding: '1rem',
+                                            fontFamily: 'Fira Code, monospace',
+                                            borderBottom: '1px solid rgba(139,30,63,0.1)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '10px'
+                                        }}
+                                    >
+                                        <span style={{ color: 'var(--accent-primary)', fontSize: '0.8rem' }}>0{navLinks.indexOf(link) + 1}</span>
+                                        <span>{link.name}</span>
+                                    </motion.a>
+                                ))}
+                            </div>
+                            
+                            {/* Compact Soft-Corner Mobile Developer Connect Button */}
+                            <motion.a 
+                                whileTap={{ scale: 0.95 }}
+                                href="#contact"
+                                onClick={() => setMobileMenuOpen(false)}
+                                style={{
+                                    marginTop: '1.5rem',
+                                    background: 'var(--accent-primary)',
+                                    border: '1px solid var(--accent-gold)',
+                                    borderRadius: '16px',
+                                    padding: '14px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '8px',
+                                    cursor: 'pointer',
+                                    color: 'white',
+                                    textDecoration: 'none',
+                                    boxShadow: '0 10px 20px rgba(139, 30, 63, 0.3)',
+                                    fontFamily: 'Fira Code, monospace'
+                                }}
+                            >
+                                <span style={{ fontSize: '0.9rem', fontWeight: '800' }}>INITIALIZE_CONTACT()</span>
+                            </motion.a>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                <style>{`
+                    @media (max-width: 800px) {
+                        .desktop-nav-capsule { display: none !important; }
+                        .mobile-toggle-capsule { display: block !important; }
+                        .desktop-connect-pill { display: none !important; }
+                    }
+                `}</style>
+            </div>
+
+            {/* Compact Soft-Corner Developer Connect Button (Top Right) */}
+            <motion.a 
+                href="#contact"
+                className="desktop-connect-pill"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+                whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: '0 0 20px rgba(139, 30, 63, 0.3)',
+                }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                    position: 'fixed',
+                    top: '25px',
+                    right: '40px',
+                    zIndex: 3000,
+                    background: 'rgba(45, 16, 21, 0.9)',
+                    border: '1px solid var(--accent-gold)',
+                    borderRadius: '12px',
+                    padding: '8px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    cursor: 'pointer',
+                    color: 'var(--accent-gold)',
+                    textDecoration: 'none',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.6)',
+                    backdropFilter: 'blur(10px)',
+                    fontFamily: 'Fira Code, monospace'
+                }}
+            >
+                <span style={{ color: 'var(--accent-primary)', fontSize: '12px', fontWeight: '800' }}>[</span>
+                <span style={{ fontSize: '0.75rem', fontWeight: '600', letterSpacing: '1px' }}>siva.connect()</span>
+                <span style={{ color: 'var(--accent-primary)', fontSize: '12px', fontWeight: '800' }}>]</span>
+                <span style={{ width: '4px', height: '10px', background: 'var(--accent-gold)', opacity: 0.5 }}></span>
+            </motion.a>
+        </>
     );
 };
 
