@@ -1,0 +1,461 @@
+/* ═══════════════════════════════════════════════
+   EXECUTIVE PROFESSIONAL LUXURY HERO — Hero.css
+   Apple / Linear / Stripe Level Executive Aesthetic
+═══════════════════════════════════════════════ */
+
+.ex-hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  background: #08080A;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  user-select: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ── Top Scrollbar ── */
+.ex-scrollbar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, #D4AF37, #F3E5AB);
+  z-index: 9999; transition: width 0.1s linear;
+}
+
+/* ── Background Grid & Spotlights ── */
+.ex-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(212, 175, 55, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.035) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.ex-spotlight {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, transparent 65%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* ── Main Container ── */
+.ex-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 5%;
+  height: calc(100vh - 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── LEFT COLUMN ── */
+.ex-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 58%;
+  max-width: 740px;
+}
+
+/* Status Pill */
+.ex-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.ex-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: ex-pulse 2s infinite;
+}
+@keyframes ex-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+.ex-status-text {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.64rem;
+  letter-spacing: 1.5px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* Name & Title Block */
+.ex-title-block {
+  margin-bottom: 12px;
+}
+
+.ex-greeting {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  color: #D4AF37;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.ex-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -1px;
+  line-height: 1.05;
+}
+
+.ex-gold-accent {
+  background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Typewriter Role */
+.ex-role-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  margin-bottom: 16px;
+}
+
+.ex-role-prefix {
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+}
+
+.ex-role-text {
+  color: #F3E5AB;
+  font-weight: 600;
+}
+
+.ex-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #D4AF37;
+  margin-left: 3px;
+  vertical-align: middle;
+  animation: ex-blink 1s step-end infinite;
+}
+@keyframes ex-blink { from,to{opacity:0} 50%{opacity:1} }
+
+/* Bio Description */
+.ex-bio {
+  font-size: clamp(0.88rem, 1.2vw, 0.98rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  max-width: 580px;
+  margin-bottom: 22px;
+}
+
+/* Core Tech Stack Pills */
+.ex-tech-stack {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.ex-stack-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ex-stack-items {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ex-tech-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.ex-tech-tag:hover {
+  border-color: #D4AF37;
+  color: #F3E5AB;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+/* Buttons */
+.ex-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.ex-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%);
+  color: #08080A;
+  font-weight: 700;
+  font-size: 0.84rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+}
+
+.ex-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+}
+
+.ex-btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.84rem;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ex-btn-secondary:hover {
+  border-color: #D4AF37;
+  color: #F3E5AB;
+  background: rgba(212, 175, 55, 0.08);
+  transform: translateY(-2px);
+}
+
+.ex-btn-ghost {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  font-size: 0.84rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: color 0.2s ease;
+}
+
+.ex-btn-ghost:hover {
+  color: #D4AF37;
+}
+
+/* Key Metrics Bar */
+.ex-metrics {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: fit-content;
+}
+
+.ex-metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.ex-metric-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.ex-metric-lbl {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.ex-metric-divider {
+  width: 1px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── RIGHT COLUMN: Clean Executive Portrait Card ── */
+.ex-right {
+  width: 38%;
+  display: flex;
+  justify-content: flex-end;
+  perspective: 1200px;
+}
+
+.ex-portrait-card {
+  position: relative;
+  width: 340px;
+  height: 460px;
+  border-radius: 20px;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.ex-card-border-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.5) 0%, transparent 60%, rgba(212, 175, 55, 0.3) 100%);
+  z-index: 0;
+}
+
+.ex-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #111319;
+  z-index: 1;
+}
+
+.ex-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  filter: brightness(1.02) contrast(1.05);
+}
+
+.ex-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(8, 8, 10, 0.9) 100%);
+}
+
+.ex-executive-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(14, 15, 20, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.ex-badge-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(212, 175, 55, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ex-badge-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ex-badge-name {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.ex-badge-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  color: #D4AF37;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* ── Footer Strip ── */
+.ex-footer-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  padding: 0 6%;
+  background: rgba(8, 8, 10, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+}
+
+.ex-footer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 1.5px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1080px) {
+  #home { height: auto; min-height: 100vh; overflow: auto; }
+  .ex-container { flex-direction: column; height: auto; padding: 110px 6% 80px; gap: 50px; }
+  .ex-left { width: 100%; max-width: 100%; }
+  .ex-right { width: 100%; justify-content: center; }
+  .ex-portrait-card { width: 300px; height: 420px; }
+  .ex-footer-strip { display: none; }
+}
+
+@media (max-width: 600px) {
+  .ex-name { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .ex-actions { gap: 10px; }
+  .ex-btn-primary, .ex-btn-secondary { padding: 10px 18px; font-size: 0.78rem; }
+}

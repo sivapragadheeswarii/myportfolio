@@ -1,70 +1,73 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-    Briefcase, Calendar, ChevronRight, 
-    Shield, Layers
+    Briefcase, Calendar, ChevronRight
 } from 'lucide-react';
 
 const ExperienceCard = ({ role, company, period, description, tech, index }) => (
     <motion.div
-        initial={{ opacity: 0, x: 20 }}
+        initial={{ opacity: 0, x: 30 }}
         whileInView={{ opacity: 1, x: 0 }}
-        transition={{ delay: index * 0.1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.15 }}
         className="experience-card"
         style={{
-            background: 'rgba(25, 4, 7, 0.4)',
-            border: '1px solid rgba(114, 47, 55, 0.2)',
-            borderRadius: '16px',
-            padding: '2rem',
-            marginBottom: '2rem',
+            background: 'rgba(10, 10, 10, 0.45)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '20px',
+            padding: '2.2rem',
+            marginBottom: '2.5rem',
             position: 'relative',
-            backdropFilter: 'blur(10px)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)'
         }}
     >
         {/* Timeline Bullet */}
         <div className="timeline-bullet" style={{
             position: 'absolute',
-            left: '-48px',
-            top: '32px',
-            width: '24px',
-            height: '24px',
+            left: '-49px',
+            top: '35px',
+            width: '20px',
+            height: '20px',
             background: 'var(--bg-primary)',
-            border: '2px solid var(--accent-primary)',
+            border: '2px solid var(--accent-gold)',
             borderRadius: '50%',
             zIndex: 2,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            boxShadow: '0 0 10px rgba(197, 160, 89, 0.3)'
         }}>
-            <div style={{ width: '8px', height: '8px', background: 'var(--accent-primary)', borderRadius: '50%' }}></div>
+            <div style={{ width: '6px', height: '6px', background: 'var(--accent-gold)', borderRadius: '50%' }}></div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.2rem', marginBottom: '1.8rem' }}>
             <div>
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>{role}</h3>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent-primary)', marginTop: '4px', fontSize: '0.9rem', fontWeight: '600' }}>
+                <h3 style={{ fontSize: '1.4rem', fontWeight: 'bold', color: '#FFFFFF', fontFamily: 'Playfair Display' }}>{role}</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent-gold)', marginTop: '4px', fontSize: '0.9rem', fontWeight: '600', fontFamily: 'Fira Code' }}>
                     <Briefcase size={14} />
                     {company}
                 </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.03)', padding: '6px 12px', borderRadius: '20px', fontSize: '0.75rem', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <Calendar size={14} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', padding: '6px 14px', borderRadius: '20px', fontSize: '0.75rem', border: '1px solid rgba(197, 160, 89, 0.1)', fontFamily: 'Fira Code' }}>
+                <Calendar size={14} style={{ color: 'var(--accent-gold)' }} />
                 {period}
             </div>
         </div>
 
         <ul style={{ paddingLeft: '0', listStyle: 'none', marginBottom: '2rem' }}>
             {description.map((point, i) => (
-                <li key={i} style={{ display: 'flex', gap: '12px', marginBottom: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                    <ChevronRight size={16} style={{ color: 'var(--accent-primary)', flexShrink: 0, marginTop: '4px' }} />
+                <li key={i} style={{ display: 'flex', gap: '12px', marginBottom: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.7', fontWeight: '300' }}>
+                    <ChevronRight size={16} style={{ color: 'var(--accent-gold)', flexShrink: 0, marginTop: '4px' }} />
                     {point}
                 </li>
             ))}
         </ul>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1.5rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', borderTop: '1px solid rgba(197, 160, 89, 0.1)', paddingTop: '1.5rem' }}>
             {tech.map((t, i) => (
-                <span key={i} style={{ fontSize: '0.65rem', color: 'var(--accent-gold)', background: 'rgba(255,204,0,0.05)', padding: '4px 10px', borderRadius: '4px', border: '1px solid rgba(219, 182, 11, 0.2)', fontFamily: 'Fira Code' }}>
+                <span key={i} style={{ fontSize: '0.65rem', color: 'var(--accent-gold)', background: 'rgba(197, 160, 89, 0.04)', padding: '4px 12px', borderRadius: '4px', border: '1px solid rgba(197, 160, 89, 0.15)', fontFamily: 'Fira Code' }}>
                     {t}
                 </span>
             ))}
@@ -101,10 +104,10 @@ const Experience = () => {
     return (
         <section id="experience" className="section-padding" style={{ position: 'relative' }}>
             <div style={{ marginBottom: '5rem', textAlign: 'center' }}>
-                <div style={{ color: 'var(--accent-primary)', fontSize: '0.8rem', fontWeight: 'bold', letterSpacing: '3px', marginBottom: '1rem' }}>
+                <div style={{ color: 'var(--accent-gold)', fontSize: '0.75rem', fontWeight: '700', letterSpacing: '4px', marginBottom: '1rem', fontFamily: 'Fira Code' }}>
                     CAREER_TRAJECTORY
                 </div>
-                <h2 style={{ fontSize: '3rem', fontWeight: 'bold' }}>
+                <h2 style={{ fontSize: '3rem', fontWeight: 'bold', color: '#FFFFFF' }}>
                     PROFESSIONAL_<span className="gradient-text">JOURNEY</span>
                 </h2>
             </div>
@@ -120,7 +123,7 @@ const Experience = () => {
 
             <style>{`
                 .experience-container {
-                    max-width: 900px;
+                    max-width: 850px;
                     margin: 0 auto;
                     position: relative;
                 }
@@ -128,26 +131,26 @@ const Experience = () => {
                 .timeline-axis {
                     position: absolute;
                     left: 2px;
-                    top: 0;
-                    bottom: 0;
-                    width: 2px;
-                    background: linear-gradient(to bottom, transparent, var(--accent-primary), transparent);
-                    opacity: 0.3;
+                    top: 10px;
+                    bottom: 20px;
+                    width: 1px;
+                    background: linear-gradient(to bottom, transparent, rgba(197, 160, 89, 0.4) 15%, rgba(197, 160, 89, 0.4) 85%, transparent);
+                    opacity: 0.5;
                 }
 
                 .experience-card {
-                    margin-left: 52px;
+                    margin-left: 50px;
                 }
 
                 @media (max-width: 768px) {
                     .experience-card {
-                        margin-left: 35px;
-                        padding: 1.5rem !important;
+                        margin-left: 36px;
+                        padding: 1.8rem !important;
                     }
                     .timeline-bullet {
-                        left: -38px !important;
-                        width: 20px !important;
-                        height: 20px !important;
+                        left: -37px !important;
+                        width: 18px !important;
+                        height: 18px !important;
                     }
                     .timeline-axis {
                        left: 10px !important;
@@ -159,17 +162,17 @@ const Experience = () => {
 
                 @media (max-width: 480px) {
                     .experience-card {
-                        margin-left: 25px;
-                        padding: 1.2rem !important;
+                        margin-left: 28px;
+                        padding: 1.4rem !important;
                     }
                     .timeline-bullet {
-                        left: -32px !important;
-                        width: 16px !important;
-                        height: 16px !important;
+                        left: -30px !important;
+                        width: 14px !important;
+                        height: 14px !important;
                     }
                     .timeline-bullet > div {
-                        width: 6px !important;
-                        height: 6px !important;
+                        width: 4px !important;
+                        height: 4px !important;
                     }
                     .timeline-axis {
                         left: 10px !important;

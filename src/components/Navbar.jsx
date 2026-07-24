@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Github, Linkedin, Cpu, Menu, X } from 'lucide-react';
+import { Github, Linkedin, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NavItem = ({ name, href, index }) => {
@@ -31,19 +31,19 @@ const NavItem = ({ name, href, index }) => {
             <motion.span
                 initial={{ opacity: 0, x: -5 }}
                 animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -5 }}
-                style={{ color: 'var(--accent-primary)' }}
+                style={{ color: 'var(--accent-gold)' }}
             >[</motion.span>
             <span>{name}</span>
             <motion.span
                 initial={{ opacity: 0, x: 5 }}
                 animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 5 }}
-                style={{ color: 'var(--accent-primary)' }}
+                style={{ color: 'var(--accent-gold)' }}
             >]</motion.span>
             
-            {/* Click Ripple Effect Placeholder style */}
+            {/* Click Ripple Effect */}
             <motion.div
                 whileTap={{ scale: 0.95 }}
-                style={{ position: 'absolute', inset: 0, borderRadius: '999px', background: 'rgba(139, 30, 63, 0.1)' }}
+                style={{ position: 'absolute', inset: 0, borderRadius: '999px', background: 'rgba(197, 160, 89, 0.08)' }}
             />
         </motion.a>
     );
@@ -86,17 +86,17 @@ const Navbar = () => {
                     style={{ 
                         display: 'flex', 
                         alignItems: 'center', 
-                        background: 'rgba(26, 9, 13, 0.8)',
+                        background: isScrolled ? 'rgba(5, 5, 5, 0.85)' : 'rgba(8, 8, 8, 0.65)',
                         backdropFilter: 'blur(20px)',
-                        border: '1px solid rgba(139, 30, 63, 0.3)',
+                        WebkitBackdropFilter: 'blur(20px)',
+                        border: '1px solid var(--glass-border)',
                         borderRadius: '999px',
                         padding: '6px 8px',
                         gap: '0.5rem',
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.6)'
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.7)',
+                        transition: 'background-color 0.4s ease'
                     }}
                 >
-                    
-
                     {/* Desktop Nav Links */}
                     <div style={{ display: 'flex', alignItems: 'center', paddingRight: '12px', background: 'transparent' }} className="desktop-nav-capsule">
                         {navLinks.map((link, index) => (
@@ -104,13 +104,13 @@ const Navbar = () => {
                         ))}
                         
                         {/* Social Mini Icons */}
-                        <div style={{ marginLeft: '1rem', display: 'flex', gap: '0.8rem', borderLeft: '1px solid rgba(139,30,63,0.2)', paddingLeft: '1rem', background: 'transparent' }}>
-                            <motion.a whileHover={{ scale: 1.2, color: 'var(--accent-gold)' }} href="https://github.com/sivapragadheeswarii" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}><Github size={16} /></motion.a>
-                            <motion.a whileHover={{ scale: 1.2, color: 'var(--accent-gold)' }} href="https://linkedin.com/in/sivapragadheeswari" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}><Linkedin size={16} /></motion.a>
+                        <div style={{ marginLeft: '1rem', display: 'flex', gap: '0.8rem', borderLeft: '1px solid rgba(197, 160, 89, 0.15)', paddingLeft: '1rem', background: 'transparent' }}>
+                            <motion.a whileHover={{ scale: 1.15, color: 'var(--accent-gold)' }} href="https://github.com/sivapragadheeswarii" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s ease' }}><Github size={16} /></motion.a>
+                            <motion.a whileHover={{ scale: 1.15, color: 'var(--accent-gold)' }} href="https://linkedin.com/in/sivapragadheeswari" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s ease' }}><Linkedin size={16} /></motion.a>
                         </div>
                     </div>
 
-                    {/* Mobile Toggle Button (Responsive) */}
+                    {/* Mobile Toggle Button */}
                     <button 
                         className="mobile-toggle-capsule"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -118,12 +118,13 @@ const Navbar = () => {
                             background: 'transparent', 
                             border: 'none', 
                             color: 'var(--text-primary)', 
-                            padding: '0 12px',
+                            padding: '8px 12px',
                             cursor: 'pointer',
-                            display: 'none'
+                            display: 'none',
+                            outline: 'none'
                         }}
                     >
-                        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        {mobileMenuOpen ? <X size={20} style={{ color: 'var(--accent-gold)' }} /> : <Menu size={20} />}
                     </button>
                 </motion.nav>
 
@@ -131,75 +132,78 @@ const Navbar = () => {
                 <AnimatePresence>
                     {mobileMenuOpen && (
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: -20 }}
+                            initial={{ opacity: 0, scale: 0.95, y: -15 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                            exit={{ opacity: 0, scale: 0.95, y: -15 }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                             style={{
                                 position: 'fixed',
                                 top: '85px',
-                                right: '20px',
-                                width: 'min(320px, 90vw)',
-                                background: 'rgba(26, 9, 13, 0.98)',
+                                right: '0px',
+                                width: 'min(300px, 90vw)',
+                                background: 'rgba(8, 8, 8, 0.96)',
                                 backdropFilter: 'blur(30px)',
-                                border: '1px solid var(--accent-primary)',
-                                borderRadius: '24px',
-                                padding: '2rem',
+                                WebkitBackdropFilter: 'blur(30px)',
+                                border: '1px solid var(--glass-border)',
+                                borderRadius: '20px',
+                                padding: '1.8rem',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: '1rem',
-                                boxShadow: '0 30px 60px rgba(0,0,0,0.9), 0 0 20px rgba(139, 30, 63, 0.2)',
+                                boxShadow: '0 30px 60px rgba(0,0,0,0.9), 0 0 30px rgba(197, 160, 89, 0.05)',
                                 zIndex: 4000
                             }}
                         >
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                {navLinks.map((link) => (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                                {navLinks.map((link, idx) => (
                                     <motion.a 
                                         key={link.name} 
                                         href={link.href} 
                                         onClick={() => setMobileMenuOpen(false)}
-                                        whileTap={{ scale: 0.95, x: 5 }}
+                                        whileTap={{ scale: 0.98, x: 3 }}
                                         style={{ 
                                             color: 'var(--text-primary)', 
                                             textDecoration: 'none', 
-                                            fontSize: '1.1rem', 
+                                            fontSize: '1rem', 
                                             fontWeight: '600',
-                                            padding: '1rem',
+                                            padding: '0.8rem',
                                             fontFamily: 'Fira Code, monospace',
-                                            borderBottom: '1px solid rgba(139,30,63,0.1)',
+                                            borderBottom: '1px solid rgba(197, 160, 89, 0.08)',
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: '10px'
                                         }}
                                     >
-                                        <span style={{ color: 'var(--accent-primary)', fontSize: '0.8rem' }}>0{navLinks.indexOf(link) + 1}</span>
+                                        <span style={{ color: 'var(--accent-gold)', fontSize: '0.75rem' }}>0{idx + 1}</span>
                                         <span>{link.name}</span>
                                     </motion.a>
                                 ))}
                             </div>
                             
-                            {/* Compact Soft-Corner Mobile Developer Connect Button */}
+                            {/* Mobile Connect Link */}
                             <motion.a 
-                                whileTap={{ scale: 0.95 }}
+                                whileTap={{ scale: 0.98 }}
                                 href="#contact"
                                 onClick={() => setMobileMenuOpen(false)}
                                 style={{
-                                    marginTop: '1.5rem',
-                                    background: 'var(--accent-primary)',
-                                    border: '1px solid var(--accent-gold)',
-                                    borderRadius: '16px',
-                                    padding: '14px',
+                                    marginTop: '1rem',
+                                    background: 'var(--accent-gold)',
+                                    borderRadius: '12px',
+                                    padding: '12px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     gap: '8px',
                                     cursor: 'pointer',
-                                    color: 'white',
+                                    color: 'var(--bg-primary)',
                                     textDecoration: 'none',
-                                    boxShadow: '0 10px 20px rgba(139, 30, 63, 0.3)',
-                                    fontFamily: 'Fira Code, monospace'
+                                    boxShadow: '0 10px 20px rgba(197, 160, 89, 0.15)',
+                                    fontFamily: 'Fira Code, monospace',
+                                    fontWeight: '700',
+                                    fontSize: '0.8rem'
                                 }}
                             >
-                                <span style={{ fontSize: '0.9rem', fontWeight: '800' }}>INITIALIZE_CONTACT()</span>
+                                <span>INITIALIZE_CONTACT()</span>
                             </motion.a>
                         </motion.div>
                     )}
@@ -213,7 +217,7 @@ const Navbar = () => {
                             transform: none !important;
                         }
                         .desktop-nav-capsule { display: none !important; }
-                        .mobile-toggle-capsule { display: block !important; padding: 8px 16px !important; }
+                        .mobile-toggle-capsule { display: block !important; }
                         .desktop-connect-pill { display: none !important; }
                     }
                 `}</style>
@@ -227,16 +231,16 @@ const Navbar = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
                 whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: '0 0 20px rgba(139, 30, 63, 0.3)',
+                    scale: 1.04,
+                    boxShadow: '0 0 25px rgba(197, 160, 89, 0.25), 0 10px 30px rgba(0,0,0,0.7)',
                 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.96 }}
                 style={{
                     position: 'fixed',
                     top: '25px',
                     right: '40px',
                     zIndex: 3000,
-                    background: 'rgba(45, 16, 21, 0.9)',
+                    background: 'rgba(12, 12, 12, 0.9)',
                     border: '1px solid var(--accent-gold)',
                     borderRadius: '12px',
                     padding: '8px 16px',
@@ -248,13 +252,15 @@ const Navbar = () => {
                     textDecoration: 'none',
                     boxShadow: '0 10px 30px rgba(0,0,0,0.6)',
                     backdropFilter: 'blur(10px)',
-                    fontFamily: 'Fira Code, monospace'
+                    WebkitBackdropFilter: 'blur(10px)',
+                    fontFamily: 'Fira Code, monospace',
+                    transition: 'border-color 0.3s ease'
                 }}
             >
-                <span style={{ color: 'var(--accent-primary)', fontSize: '12px', fontWeight: '800' }}>[</span>
+                <span style={{ color: '#FFFFFF', opacity: 0.4, fontSize: '12px', fontWeight: '800' }}>[</span>
                 <span style={{ fontSize: '0.75rem', fontWeight: '600', letterSpacing: '1px' }}>siva.connect()</span>
-                <span style={{ color: 'var(--accent-primary)', fontSize: '12px', fontWeight: '800' }}>]</span>
-                <span style={{ width: '4px', height: '10px', background: 'var(--accent-gold)', opacity: 0.5 }}></span>
+                <span style={{ color: '#FFFFFF', opacity: 0.4, fontSize: '12px', fontWeight: '800' }}>]</span>
+                <span style={{ width: '4px', height: '10px', background: 'var(--accent-gold)', opacity: 0.6 }}></span>
             </motion.a>
         </>
     );

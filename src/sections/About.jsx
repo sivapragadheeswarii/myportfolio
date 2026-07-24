@@ -1,12 +1,62 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+
+const AnimatedStat = ({ label, value }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-80px" });
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        if (!isInView) return;
+        
+        const numericStr = value.replace(/[^0-9.]/g, '');
+        const targetVal = parseFloat(numericStr);
+        const hasDecimals = value.includes('.');
+        
+        const duration = 1200; // ms
+        const startTime = performance.now();
+
+        const animate = (timestamp) => {
+            const runtime = timestamp - startTime;
+            const progress = Math.min(runtime / duration, 1);
+            const ease = progress * (2 - progress);
+            const current = ease * targetVal;
+
+            if (hasDecimals) {
+                setCount(parseFloat(current.toFixed(1)));
+            } else {
+                setCount(Math.floor(current));
+            }
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                // Ensure precise target value at completion
+                setCount(targetVal);
+            }
+        };
+
+        requestAnimationFrame(animate);
+    }, [isInView, value]);
+
+    const suffix = value.replace(/[0-9.]/g, '');
+
+    return (
+        <div ref={ref} style={{ minWidth: '100px' }}>
+            <h3 style={{ fontSize: '2.2rem', color: 'var(--accent-gold)', marginBottom: '0.2rem', fontFamily: 'Playfair Display', fontWeight: 'bold' }}>
+                {count}{suffix}
+            </h3>
+            <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', letterSpacing: '2px', fontFamily: 'Fira Code' }}>{label}</p>
+        </div>
+    );
+};
 
 const About = () => {
     return (
         <section id="about" className="section-padding" style={{ position: 'relative' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-                <span style={{ color: 'var(--accent-primary)', fontSize: '0.9rem', fontWeight: 'bold' }}>// 02</span>
-                <h2 style={{ fontSize: '2rem' }}>SOURCE_<span className="gradient-text">PROFILE</span></h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3.5rem' }}>
+                <span style={{ color: 'var(--accent-gold)', fontSize: '0.85rem', fontWeight: 'bold', fontFamily: 'Fira Code' }}>// 02</span>
+                <h2 style={{ fontSize: '2rem', color: '#FFFFFF' }}>SOURCE_<span className="gradient-text">PROFILE</span></h2>
                 <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }}></div>
             </div>
 
@@ -14,44 +64,37 @@ const About = () => {
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <div className="cyber-card" style={{ marginBottom: '2rem' }}>
-                        <p style={{ fontSize: '1rem', lineHeight: '1.8', color: 'var(--text-secondary)' }}>
-                            <span style={{ color: 'var(--accent-primary)' }}>[INFO]</span> MERN Stack Architect specializing in high-performance web applications and scalable backend systems.
-                            My methodology focuses on robust data modeling and high-fidelity frontend integration.
-                            Currently operational at <span style={{ color: 'var(--accent-primary)' }}>SDS Technologies</span>.
+                    <div className="cyber-card" style={{ marginBottom: '2.5rem', background: 'rgba(10, 10, 10, 0.5)' }}>
+                        <p style={{ fontSize: '1rem', lineHeight: '1.8', color: 'var(--text-secondary)', fontWeight: '300' }}>
+                            <span style={{ color: 'var(--accent-gold)', fontFamily: 'Fira Code', fontSize: '0.8rem', marginRight: '6px' }}>[INFO]</span> 
+                            MERN Stack Architect specializing in high-performance web applications and scalable backend systems. My methodology focuses on robust data modeling and high-fidelity frontend integration. Currently operational at <span style={{ color: '#FFFFFF', fontWeight: '500' }}>SDS Technologies</span>.
                         </p>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '2rem', marginTop: '3rem', flexWrap: 'wrap' }} className="about-stats">
-                        {[
-                            { label: 'EXPERIENCE', value: '1.5Y+' },
-                            { label: 'DEPLOYMENTS', value: '15+' },
-                            { label: 'CLIENTS', value: '08+' }
-                        ].map((stat, i) => (
-                            <div key={i} style={{ minWidth: '100px' }}>
-                                <h3 style={{ fontSize: '1.8rem', color: 'var(--accent-primary)', marginBottom: '0.2rem' }}>{stat.value}</h3>
-                                <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', letterSpacing: '1px' }}>{stat.label}</p>
-                            </div>
-                        ))}
+                    <div style={{ display: 'flex', gap: '2.5rem', marginTop: '3rem', flexWrap: 'wrap' }} className="about-stats">
+                        <AnimatedStat label="EXPERIENCE" value="1.5Y+" />
+                        <AnimatedStat label="DEPLOYMENTS" value="15+" />
+                        <AnimatedStat label="CLIENTS" value="08+" />
                     </div>
                 </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    style={{ padding: '2rem', border: '1px solid var(--glass-border)', background: 'rgba(255,255,255,0.02)', position: 'relative' }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+                    style={{ padding: '2.5rem', borderRadius: '16px', border: '1px solid var(--glass-border)', background: 'rgba(10,10,10,0.3)', position: 'relative', backdropFilter: 'blur(10px)' }}
                     className="about-info-card"
                 >
-                    <div style={{ position: 'absolute', top: '-1px', left: '20%', width: '60%', height: '2px', background: 'var(--accent-primary)' }}></div>
-                    <p style={{ fontSize: '0.95rem', lineHeight: '1.8', color: 'var(--text-secondary)' }}>
-                        My development pipeline revolves around the core MERN stack, leveraging the React ecosystem for dynamic UIs and Node.js for high-throughput API services. 
-                        I prioritize type safety, modular component architecture, and database performance.
-                        Beyond the code, I focus on solving complex architectural puzzles and engineering seamless user journeys.
+                    <div style={{ position: 'absolute', top: '-1px', left: '15%', width: '70%', height: '1.5px', background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)' }}></div>
+                    <p style={{ fontSize: '0.95rem', lineHeight: '1.8', color: 'var(--text-secondary)', fontWeight: '300' }}>
+                        My development pipeline revolves around the core MERN stack, leveraging the React ecosystem for dynamic UIs and Node.js for high-throughput API services. I prioritize type safety, modular component architecture, and database performance. 
+                    </p>
+                    <p style={{ fontSize: '0.95rem', lineHeight: '1.8', color: 'var(--text-secondary)', fontWeight: '300', marginTop: '1.2rem' }}>
+                        Beyond the code, I focus on solving complex architectural puzzles, optimizing memory consumption, and engineering seamless, elegant user journeys that leave a lasting impression.
                     </p>
                 </motion.div>
             </div>
@@ -59,8 +102,8 @@ const About = () => {
             <style>{`
                 @media (max-width: 900px) {
                     .about-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-                    .about-stats { justify-content: center; text-align: center; gap: 1.5rem !important; }
-                    .about-info-card { padding: 1.5rem !important; }
+                    .about-stats { justify-content: center; text-align: center; gap: 2rem !important; }
+                    .about-info-card { padding: 1.8rem !important; }
                 }
                 @media (max-width: 600px) {
                     .about-grid h2 { 
@@ -69,7 +112,7 @@ const About = () => {
                     }
                     .cyber-card p { font-size: 0.9rem !important; }
                     .about-info-card p { font-size: 0.85rem !important; }
-                    .about-stats div h3 { font-size: 1.5rem !important; }
+                    .about-stats div h3 { font-size: 1.8rem !important; }
                 }
                 @media (max-width: 400px) {
                     .about-grid h2 { font-size: 1.6rem !important; }

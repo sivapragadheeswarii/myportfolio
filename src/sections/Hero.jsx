@@ -1,296 +1,242 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Terminal, ChevronRight } from 'lucide-react';
-import profile from '../assets/profile.jpg';
+import { ArrowUpRight, Download, CheckCircle2, ShieldCheck, Terminal, Layers, Code2, Sparkles, Briefcase } from 'lucide-react';
+import profile from '../assets/profile.jpeg';
+import './Hero.css';
 
+/* ── Typewriter Component ─────────────────────────── */
+const Typewriter = ({ words }) => {
+  const [i, setI] = useState(0);
+  const [sub, setSub] = useState(0);
+  const [rev, setRev] = useState(false);
+  useEffect(() => {
+    if (sub === words[i].length + 1 && !rev) { const t = setTimeout(() => setRev(true), 2500); return () => clearTimeout(t); }
+    if (sub === 0 && rev) { setRev(false); setI(p => (p + 1) % words.length); return; }
+    const t = setTimeout(() => setSub(p => p + (rev ? -1 : 1)), rev ? 30 : 65);
+    return () => clearTimeout(t);
+  }, [sub, i, rev]);
+  return <><span>{words[i].substring(0, sub)}</span><span className="ex-cursor" /></>;
+};
+
+/* ── Executive Professional Hero Component ─────────────────────────── */
 const Hero = () => {
-    
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
+  const [scroll, setScroll] = useState(0);
+  const mouseX = useMotionValue(-500);
+  const mouseY = useMotionValue(-500);
 
-   
-    const smoothX = useSpring(mouseX, { damping: 50, stiffness: 200 });
-    const smoothY = useSpring(mouseY, { damping: 50, stiffness: 200 });
+  const smoothX = useSpring(mouseX, { stiffness: 75, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 75, damping: 20 });
 
-   
-    const auraX = useTransform(smoothX, (v) => v * 0.5);
-    const auraY = useTransform(smoothY, (v) => v * 0.5);
-    const photoX = useTransform(smoothX, (v) => v * 1);
-    const photoY = useTransform(smoothY, (v) => v * 1);
-    const frameX = useTransform(smoothX, (v) => v * 1.5);
-    const frameY = useTransform(smoothY, (v) => v * 1.5);
+  const cardRotateX = useTransform(smoothY, [0, window.innerHeight || 900], [5, -5]);
+  const cardRotateY = useTransform(smoothX, [0, window.innerWidth || 1400], [-7, 7]);
 
-    const handleMouseMove = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        mouseX.set(x * 50);
-        mouseY.set(y * 50);
+  useEffect(() => {
+    const onMv = e => { mouseX.set(e.clientX); mouseY.set(e.clientY); };
+    const onSc = () => {
+      const t = document.documentElement.scrollHeight - window.innerHeight;
+      setScroll(t > 0 ? window.scrollY / t : 0);
     };
-
-    const handleMouseLeave = () => {
-        mouseX.set(0);
-        mouseY.set(0);
+    window.addEventListener('mousemove', onMv);
+    window.addEventListener('scroll', onSc);
+    return () => {
+      window.removeEventListener('mousemove', onMv);
+      window.removeEventListener('scroll', onSc);
     };
+  }, [mouseX, mouseY]);
 
-    return (
-        <section id="home" className="hero-section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: '100px', paddingLeft: '8%', paddingRight: '8%' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 450px', gap: '4rem', alignItems: 'center', width: '100%' }} className="hero-grid">
-                
-                <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem' }}>
-                        <div style={{ width: '40px', height: '2px', background: 'var(--accent-gold)' }}></div>
-                        <span style={{ color: 'var(--accent-gold)', fontSize: '0.8rem', letterSpacing: '5px', fontWeight: '600', fontFamily: 'Fira Code' }}>IDENTITY_VAULT_DEI.BOOTED</span>
-                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-primary)', boxShadow: '0 0 10px var(--accent-primary)' }}></div>
-                    </div>
+  const roles = [
+    'Full Stack Engineer',
+    'MERN Stack Architect',
+    'React & Node Specialist',
+    'Enterprise System Developer'
+  ];
 
-                    <div style={{ marginBottom: '0.5rem' }}>
-                        <span style={{ fontSize: '1.8rem', color: 'var(--accent-gold)', fontWeight: '400', letterSpacing: '-0.5px', fontFamily: 'Playfair Display', fontStyle: 'italic', opacity: 0.8 }}>Hi, I'm</span>
-                    </div>
+  return (
+    <section id="home" className="ex-hero">
+      {/* Scroll Progress Bar */}
+      <div className="ex-scrollbar" style={{ width: `${scroll * 100}%` }} />
 
-                    <h1 
-                        className="hero-name"
-                        style={{ 
-                            fontSize: 'clamp(1.8rem, 7.5vw, 4.2rem)', 
-                            lineHeight: '1.1', 
-                            marginBottom: '2.5rem', 
-                            fontWeight: '900', 
-                            background: 'linear-gradient(to right, var(--accent-gold), var(--accent-primary))',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text',
-                            fontFamily: 'Playfair Display', 
-                            letterSpacing: '-1.5px',
-                        }}
-                    >
-                        Sivapragadheeswari
-                    </h1>
+      {/* Ambient Radial Spotlight */}
+      <div className="ex-spotlight" />
+      <div className="ex-grid-bg" />
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                        <div style={{ padding: '0.5rem 1.2rem', background: 'var(--accent-primary)', color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '2px', borderRadius: '2px' }}>
-                            MERN ARCHITECT
-                        </div>
-                        <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, var(--accent-gold), transparent)' }}></div>
-                    </div>
+      <div className="ex-container">
+        {/* LEFT COLUMN: Ultra-Clean Executive Typography */}
+        <div className="ex-left">
 
-                    <div style={{ maxWidth: '600px', marginBottom: '3.5rem', borderLeft: '2px solid var(--accent-gold)', paddingLeft: '20px' }}>
-                        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: '1.8', fontFamily: 'Inter', fontWeight: '300' }}>
-                            Specializing in <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>Engineered Full-Stack Solutions</span>. I build high-frequency web ecosystems using the MongoDB, Express, React, and Node.js stack. Transforming technical debt into <span style={{ color: 'var(--accent-gold)' }}>scalable infrastructure</span>.
-                        </p>
-                    </div>
+          {/* Availability Pill */}
+          <motion.div
+            className="ex-status-pill"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="ex-live-dot" />
+            <span className="ex-status-text">AVAILABLE FOR SENIOR ROLES & CONTRACTS</span>
+          </motion.div>
 
-                    <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-                        <button 
-                            className="cyber-button" 
-                            style={{ border: '1px solid var(--accent-gold)', color: 'var(--accent-gold)', padding: '1rem 3rem' }}
-                            onClick={() => window.location.href = '#projects'}
-                        >
-                            VIEW WORK
-                        </button>
-                        <button
-                            style={{ background: 'transparent', border: 'none', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9rem' }}
-                            onClick={() => window.location.href = '#about'}
-                        >
-                            THE_IDENTITY <ChevronRight size={16} />
-                        </button>
-                    </div>
-                </motion.div>
+          {/* Name & Title Header */}
+          <motion.div
+            className="ex-title-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="ex-greeting">SENIOR SOFTWARE ENGINEER</span>
+            <h1 className="ex-name">
+              Sivapragadheeswari <span className="ex-gold-accent">N.</span>
+            </h1>
+          </motion.div>
 
-               
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                >
-                    <motion.div
-                        whileHover={{ rotateX: 5, rotateY: 5, scale: 1.02 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        style={{ position: 'relative', zIndex: 10, cursor: 'pointer', perspective: '1000px' }}
-                        onMouseMove={handleMouseMove}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        <div style={{ position: 'relative', width: '340px', height: '420px' }}>
-                       
-                            <div style={{ 
-                                position: 'absolute', 
-                                inset: '-1px', 
-                                border: '1.5px solid var(--accent-gold)', 
-                                borderRadius: '4px',
-                                boxShadow: '0 0 25px rgba(243, 229, 171, 0.15)',
-                                zIndex: 2,
-                                pointerEvents: 'none'
-                            }}></div>
+          {/* Typewriter Role */}
+          <motion.div
+            className="ex-role-wrap"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+          >
+            <span className="ex-role-prefix">// Specializing as</span>
+            <div className="ex-role-text">
+              <Typewriter words={roles} />
+            </div>
+          </motion.div>
 
-                         
-                            <div style={{ 
-                                width: '100%', 
-                                height: '100%', 
-                                borderRadius: '4px',
-                                background: 'linear-gradient(135deg, rgba(26, 9, 13, 0.8) 0%, rgba(10, 2, 4, 0.9) 100%)',
-                                backdropFilter: 'blur(20px)',
-                                border: '1px solid rgba(243, 229, 171, 0.1)',
-                                padding: '1px',
-                                position: 'relative',
-                                overflow: 'hidden',
-                                boxShadow: '0 30px 70px rgba(0,0,0,0.8)'
-                            }}>
-                                <div style={{ 
-                                    width: '100%', 
-                                    height: '100%', 
-                                    borderRadius: '2.5px', 
-                                    overflow: 'hidden', 
-                                    position: 'relative'
-                                }}>
-                                    <img
-                                        src={profile}
-                                        alt="Profile"
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'contrast(1.05) brightness(1.02)' }}
-                                    />
-                                   
-                                    <div style={{ 
-                                        position: 'absolute', 
-                                        inset: 0, 
-                                        background: 'linear-gradient(to top, rgba(26, 9, 13, 0.4) 0%, transparent 40%)',
-                                        zIndex: 1
-                                    }} />
-                                </div>
-                                
-                             
-                                <div style={{ position: 'absolute', top: 15, left: 15, width: '20px', height: '20px', borderTop: '1px solid var(--accent-gold)', borderLeft: '1px solid var(--accent-gold)', opacity: 0.6 }}></div>
-                                <div style={{ position: 'absolute', bottom: 15, right: 15, width: '20px', height: '20px', borderBottom: '1px solid var(--accent-gold)', borderRight: '1px solid var(--accent-gold)', opacity: 0.6 }}></div>
-                            </div>
-                        </div>
+          {/* Professional Bio */}
+          <motion.p
+            className="ex-bio"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+          >
+            Building high-impact software solutions with modern React architectures, scalable Node.js microservices, and high-performance databases. Committed to engineering excellence, clean maintainable code, and seamless UI performance.
+          </motion.p>
 
-                       
-                        <div style={{ 
-                            position: 'absolute', 
-                            top: '-15px', 
-                            right: '-10px', 
-                            background: 'rgba(166, 45, 67, 0.95)', 
-                            color: 'var(--accent-gold)', 
-                            padding: '6px 16px', 
-                            borderRadius: '4px', 
-                            fontSize: '9px', 
-                            fontWeight: '800', 
-                            textTransform: 'uppercase',
-                            fontFamily: 'Fira Code',
-                            letterSpacing: '2px',
-                            zIndex: 20,
-                            boxShadow: '0 0 15px rgba(166, 45, 67, 0.5), 0 5px 15px rgba(0,0,0,0.4)',
-                            border: '1px solid var(--accent-gold)'
-                        }}>
-                            Verified Identity
-                        </div>
-                        <div style={{ 
-                            position: 'absolute', 
-                            bottom: '30px', 
-                            left: '-40px', 
-                            border: '1px solid var(--accent-gold)', 
-                            padding: '4px 12px', 
-                            borderRadius: '2px', 
-                            fontSize: '8px', 
-                            color: 'var(--accent-gold)', 
-                            fontWeight: '500', 
-                            textTransform: 'uppercase',
-                            fontFamily: 'Fira Code',
-                            letterSpacing: '3px',
-                            zIndex: 20, 
-                            transform: 'rotate(-90deg)',
-                            opacity: 0.7
-                        }}>
-                            SIVA.DEV.2024
-                        </div>
-                    </motion.div>
+          {/* Core Tech Stack Pills */}
+          <motion.div
+            className="ex-tech-stack"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.55 }}
+          >
+            <span className="ex-stack-label">Core Tech Stack:</span>
+            <div className="ex-stack-items">
+              <span className="ex-tech-tag">React.js</span>
+              <span className="ex-tech-tag">Node.js</span>
+              <span className="ex-tech-tag">Express</span>
+              <span className="ex-tech-tag">MongoDB</span>
+              <span className="ex-tech-tag">JavaScript / ES6+</span>
+              <span className="ex-tech-tag">RESTful APIs</span>
+            </div>
+          </motion.div>
 
-                  
-                    <motion.div 
-                        style={{ 
-                            position: 'absolute', 
-                            width: '400px',
-                            height: '400px',
-                            background: 'radial-gradient(circle, rgba(139, 30, 63, 0.2) 0%, transparent 70%)',
-                            filter: 'blur(50px)',
-                            zIndex: 1,
-                            pointerEvents: 'none',
-                            x: auraX,
-                            y: auraY
-                        }}
-                    />
-                </motion.div>
+          {/* Action CTAs */}
+          <motion.div
+            className="ex-actions"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.65 }}
+          >
+            <button
+              className="ex-btn-primary"
+              onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <span>View Featured Work</span>
+              <ArrowUpRight size={16} />
+            </button>
+
+            <a
+              href="/resume.pdf"
+              download="Sivapragadheeswari_N_Resume.pdf"
+              className="ex-btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Download size={15} />
+              <span>Download Resume</span>
+            </a>
+
+            <button
+              className="ex-btn-ghost"
+              onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <span>Get In Touch</span>
+            </button>
+          </motion.div>
+
+          {/* Executive Metrics Bar */}
+          <motion.div
+            className="ex-metrics"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.75 }}
+          >
+            <div className="ex-metric">
+              <span className="ex-metric-val">15+</span>
+              <span className="ex-metric-lbl">Completed Projects</span>
+            </div>
+            <div className="ex-metric-divider" />
+            <div className="ex-metric">
+              <span className="ex-metric-val">3+ Yrs</span>
+              <span className="ex-metric-lbl">Software Experience</span>
+            </div>
+            <div className="ex-metric-divider" />
+            <div className="ex-metric">
+              <span className="ex-metric-val">100%</span>
+              <span className="ex-metric-lbl">High Performance</span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* RIGHT COLUMN: Ultra-Clean Executive Portrait Card */}
+        <motion.div
+          className="ex-right"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          <motion.div
+            className="ex-portrait-card"
+            style={{
+              rotateX: cardRotateX,
+              rotateY: cardRotateY,
+            }}
+          >
+            {/* Subtle Gold Border Glow */}
+            <div className="ex-card-border-glow" />
+
+            {/* Main Clean Image Wrapper */}
+            <div className="ex-img-wrapper">
+              <img src={profile} alt="Sivapragadheeswari" />
+              <div className="ex-img-overlay" />
             </div>
 
-            <style>{`
-                .hero-section {
-                    padding-top: 100px;
-                    padding-left: 8%;
-                    padding-right: 8%;
-                    overflow-x: hidden;
-                }
+            {/* Floating Executive Glass Badge */}
+            <div className="ex-executive-badge">
+              <div className="ex-badge-icon">
+                <ShieldCheck size={18} color="#D4AF37" />
+              </div>
+              <div className="ex-badge-info">
+                <span className="ex-badge-name">SIVAPRAGADHEESWARI N.</span>
+                <span className="ex-badge-role">FULL STACK SOFTWARE ENGINEER</span>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
 
-                .hero-name {
-                    overflow-wrap: break-word;
-                    word-wrap: break-word;
-                    hyphens: auto;
-                    white-space: normal !important;
-                }
-
-                @media (max-width: 1100px) {
-                    .hero-section { padding-top: 120px; }
-                    .hero-grid { 
-                        display: flex !important;
-                        flex-direction: column !important;
-                        text-align: center; 
-                        gap: 3rem; 
-                    }
-                    .hero-grid > div { 
-                        display: flex; 
-                        flex-direction: column; 
-                        align-items: center; 
-                        justify-content: center;
-                        width: 100% !important;
-                    }
-                    .hero-grid > div:last-child { order: -1; }
-                    .hero-name { 
-                        font-size: clamp(1.8rem, 10vw, 3.5rem) !important; 
-                        letter-spacing: -0.5px !important;
-                        max-width: 100%;
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    .hero-section { padding-left: 6%; padding-right: 6%; padding-top: 110px; }
-                }
-
-                @media (max-width: 600px) {
-                    .hero-grid > div:last-child { 
-                        transform: scale(0.75); 
-                        margin-bottom: -20px;
-                    }
-                    .hero-name { 
-                        font-size: clamp(1.5rem, 11vw, 2.5rem) !important; 
-                        line-height: 1.2 !important;
-                        letter-spacing: -0.5px !important;
-                        margin-bottom: 1.5rem !important;
-                    }
-                    .hero-section { padding-top: 100px; }
-                }
-
-                @media (max-width: 400px) {
-                    .hero-grid > div:last-child { 
-                        transform: scale(0.65); 
-                        margin-bottom: -50px; 
-                    }
-                    .hero-name { font-size: 1.7rem !important; }
-                    .hero-section { padding-left: 4%; padding-right: 4%; }
-                }
-            `}</style>
-        </section>
-    );
+      {/* Footer Info Strip */}
+      <div className="ex-footer-strip">
+        <div className="ex-footer-item">
+          <Terminal size={13} color="#D4AF37" />
+          <span>ENTERPRISE MERN ARCHITECTURE</span>
+        </div>
+        <div className="ex-footer-item">
+          <Briefcase size={13} color="#D4AF37" />
+          <span>LOCATION: COIMBATORE, IN</span>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Hero;
