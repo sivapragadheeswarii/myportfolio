@@ -76,8 +76,7 @@ const Skills = () => {
             <div style={{ 
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(3, 1fr)', 
-                gap: '1.5rem',
-                minHeight: '600px'
+                gap: '1.5rem'
             }} className="skills-bento">
                 
                 {/* Core Architecture */}
@@ -110,40 +109,6 @@ const Skills = () => {
                             <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'rgba(5,5,5,0.4)', borderRadius: '10px', border: '1px solid rgba(197, 160, 89, 0.05)' }}>
                                 <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'Fira Code' }}>{s.name}</span>
                                 <div style={{ width: '6px', height: '6px', background: '#C5A059', borderRadius: '50%', boxShadow: '0 0 8px #C5A059' }}></div>
-                            </div>
-                        ))}
-                    </div>
-                </BentoCard>
-
-                {/* Engineering Workflow */}
-                <BentoCard title="Engineering Workflow" icon={Settings}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        {[
-                            { name: 'Git/GitHub', icon: GitBranch },
-                            { name: 'Vite/ESBuild', icon: Zap },
-                            { name: 'Postman/API', icon: Terminal },
-                            { name: 'NPM/Packages', icon: Box }
-                        ].map((t, i) => (
-                            <div key={i} style={{ textAlign: 'center', padding: '1.2rem 1rem', background: 'rgba(5,5,5,0.3)', border: '1px solid rgba(197, 160, 89, 0.03)', borderRadius: '12px', transition: 'border-color 0.3s ease' }}>
-                                <t.icon size={20} style={{ color: 'var(--accent-gold)', marginBottom: '8px' }} />
-                                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontFamily: 'Fira Code' }}>{t.name}</div>
-                            </div>
-                        ))}
-                    </div>
-                </BentoCard>
-
-                {/* Architecture Metrics */}
-                <BentoCard title="Architecture Metrics" icon={Activity} span={2}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.5rem', height: '100%', alignItems: 'center' }} className="metrics-grid">
-                        {[
-                            { label: 'System Uptime', value: '99.9%', desc: 'SLA Mentality' },
-                            { label: 'Clean Code', value: '100%', desc: 'SOLID Principles' },
-                            { label: 'Security Score', value: 'A+', desc: 'Hardened Logic' }
-                        ].map((stat, i) => (
-                            <div key={i} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }} className="metric-item">
-                                <div style={{ fontSize: '0.7rem', color: 'var(--accent-gold)', textTransform: 'uppercase', marginBottom: '5px', letterSpacing: '1px', fontFamily: 'Fira Code' }}>{stat.label}</div>
-                                <div style={{ fontSize: '2.4rem', fontWeight: 'bold', fontFamily: 'Playfair Display', color: '#FFFFFF' }}>{stat.value}</div>
-                                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', opacity: 0.6 }}>{stat.desc}</div>
                             </div>
                         ))}
                     </div>
