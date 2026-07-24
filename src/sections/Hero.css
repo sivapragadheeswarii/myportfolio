@@ -460,7 +460,7 @@
   .ex-status-pill { margin-left: auto; margin-right: auto; padding: 6px 14px; }
   .ex-title-block { text-align: center; }
   .ex-greeting { font-size: 0.68rem; letter-spacing: 2px; }
-  .ex-name { font-size: clamp(2rem, 8.5vw, 2.6rem); }
+  .ex-name { font-size: clamp(1.4rem, 5.8vw, 1.9rem); line-height: 1.15; word-break: break-word; }
   .ex-role-wrap { justify-content: center; font-size: 0.9rem; flex-wrap: wrap; }
   .ex-bio { font-size: 0.88rem; text-align: center; margin-left: auto; margin-right: auto; line-height: 1.7; }
   .ex-tech-stack { justify-content: center; flex-direction: column; gap: 8px; }
