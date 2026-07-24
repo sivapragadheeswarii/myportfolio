@@ -110,6 +110,9 @@ const Experience = () => {
                 <h2 style={{ fontSize: '3rem', fontWeight: 'bold', color: '#FFFFFF' }}>
                     PROFESSIONAL_<span className="gradient-text">JOURNEY</span>
                 </h2>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.8rem', fontFamily: 'Fira Code', letterSpacing: '1px' }}>
+                    // 1+ YEARS OF HANDS-ON FULL STACK EXPERIENCE
+                </p>
             </div>
 
             <div className="experience-container">

@@ -75,7 +75,7 @@ const About = () => {
                     </div>
 
                     <div style={{ display: 'flex', gap: '2.5rem', marginTop: '3rem', flexWrap: 'wrap' }} className="about-stats">
-                        <AnimatedStat label="EXPERIENCE" value="1.5Y+" />
+                        <AnimatedStat label="EXPERIENCE" value="1+ Yrs" />
                         <AnimatedStat label="DEPLOYMENTS" value="15+" />
                         <AnimatedStat label="CLIENTS" value="08+" />
                     </div>

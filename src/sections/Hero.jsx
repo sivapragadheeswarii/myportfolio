@@ -176,7 +176,7 @@ const Hero = () => {
             </div>
             <div className="ex-metric-divider" />
             <div className="ex-metric">
-              <span className="ex-metric-val">3+ Yrs</span>
+              <span className="ex-metric-val">1+ Yrs</span>
               <span className="ex-metric-lbl">Software Experience</span>
             </div>
             <div className="ex-metric-divider" />
