@@ -170,32 +170,98 @@ function App() {
         <Contact />
       </main>
       
-      <footer className="glass" style={{ 
-          padding: '4rem 2rem', 
-          textAlign: 'center', 
-          color: 'var(--text-secondary)', 
-          position: 'relative', 
-          zIndex: 1, 
-          fontFamily: 'Fira Code, monospace', 
-          fontSize: '0.75rem', 
-          letterSpacing: '1px',
-          borderLeft: 'none',
-          borderRight: 'none',
-          borderBottom: 'none',
-          borderRadius: 0,
-          background: 'rgba(5, 5, 5, 0.8)'
-      }}>
-        <div style={{ marginBottom: '0.8rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem' }}>
+      <footer className="app-footer-executive glass">
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '1px',
+          background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)'
+        }} />
+
+        <div className="footer-copyright-row">
           <span style={{ color: 'var(--accent-gold)' }}>&lt;/&gt;</span>
           <span>© {new Date().getFullYear()} SIVAPRAGADHEESWARI N. // ALL_RIGHTS_RESERVED</span>
         </div>
-        <div style={{ opacity: 0.6 }}>
+        <div className="footer-stack-row">
           // STACK_BUILD: REACT_NODE_MONGODB.EXE
         </div>
-        <div style={{ marginTop: '1.5rem', fontSize: '0.6rem', opacity: 0.4, letterSpacing: '2px' }}>
-          STATUS: 200_OK // BUILD: STABLE_V3.1 // LOC: COIMBATORE, IN
+        <div className="footer-status-pill-row">
+          <span className="footer-pulse-dot" />
+          <span>STATUS: 200_OK // BUILD: STABLE_V3.1 // LOC: COIMBATORE, IN</span>
         </div>
       </footer>
+
+      <style>{`
+        .app-footer-executive {
+          padding: 4rem 2rem;
+          text-align: center;
+          color: var(--text-secondary);
+          position: relative;
+          z-index: 1;
+          font-family: 'Fira Code', monospace;
+          font-size: 0.75rem;
+          letter-spacing: 1px;
+          border-left: none;
+          border-right: none;
+          border-bottom: none;
+          border-radius: 0;
+          background: rgba(5, 5, 5, 0.85);
+          backdrop-filter: blur(16px);
+        }
+        .footer-copyright-row {
+          margin-bottom: 0.8rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+          color: #FFFFFF;
+          font-weight: 500;
+        }
+        .footer-stack-row {
+          opacity: 0.6;
+        }
+        .footer-status-pill-row {
+          margin-top: 1.5rem;
+          font-size: 0.64rem;
+          opacity: 0.6;
+          letter-spacing: 2px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+        .footer-pulse-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #10B981;
+          box-shadow: 0 0 8px #10B981;
+          display: inline-block;
+        }
+        @media (max-width: 600px) {
+          .app-footer-executive {
+            padding: 2.2rem 1.2rem 2.8rem 1.2rem !important;
+            font-size: 0.68rem !important;
+          }
+          .footer-copyright-row {
+            flex-direction: column !important;
+            gap: 0.4rem !important;
+            font-size: 0.72rem !important;
+            line-height: 1.4 !important;
+          }
+          .footer-stack-row {
+            font-size: 0.62rem !important;
+          }
+          .footer-status-pill-row {
+            margin-top: 1.2rem !important;
+            font-size: 0.56rem !important;
+            letter-spacing: 1px !important;
+            flex-wrap: wrap !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
