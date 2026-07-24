@@ -353,31 +353,48 @@ const Skills = () => {
                 }
                 @media (max-width: 600px) {
                     .skills-command-layout {
-                        gap: 1.5rem !important;
+                        gap: 1.2rem !important;
                     }
                     .skills-tech-selector-list {
                         display: flex !important;
                         flex-direction: row !important;
                         overflow-x: auto !important;
-                        padding-bottom: 8px !important;
-                        gap: 0.8rem !important;
+                        padding-bottom: 10px !important;
+                        gap: 0.75rem !important;
                         scrollbar-width: none;
                         -ms-overflow-style: none;
+                        -webkit-overflow-scrolling: touch;
                     }
                     .skills-tech-selector-list::-webkit-scrollbar {
                         display: none;
                     }
                     .skills-tech-item-btn {
-                        min-width: 220px !important;
+                        min-width: 180px !important;
                         flex-shrink: 0 !important;
-                        padding: 1rem 1.2rem !important;
+                        padding: 0.85rem 1rem !important;
+                        border-radius: 14px !important;
+                    }
+                    .skills-tech-item-btn svg {
+                        width: 16px !important;
+                        height: 16px !important;
                     }
                     .skills-console-card {
-                        padding: 1.5rem 1.2rem !important;
+                        padding: 1.4rem 1.1rem !important;
                         border-radius: 18px !important;
+                        background: rgba(12, 12, 18, 0.85) !important;
                     }
                     .skills-console-card h3 {
-                        font-size: 1.4rem !important;
+                        font-size: 1.35rem !important;
+                    }
+                    .blueprint-caps-grid {
+                        gap: 0.6rem !important;
+                    }
+                    .blueprint-caps-grid > div {
+                        padding: 10px 12px !important;
+                        font-size: 0.78rem !important;
+                    }
+                    .blueprint-meta-grid {
+                        gap: 0.8rem !important;
                     }
                 }
             `}</style>
