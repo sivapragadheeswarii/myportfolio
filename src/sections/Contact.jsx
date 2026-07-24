@@ -400,33 +400,64 @@ const Contact = () => {
                 }
 
                 @media (max-width: 600px) {
-                    .contact-card-luxury {
-                        padding: 2rem 1.5rem;
-                        border-radius: 20px;
+                    .contact-header-luxury {
+                        margin-bottom: 2.5rem !important;
                     }
                     .contact-header-luxury h2 {
-                        font-size: 2.2rem !important;
+                        font-size: clamp(1.9rem, 6.5vw, 2.5rem) !important;
+                    }
+                    .contact-container {
+                        gap: 2rem !important;
+                    }
+                    .contact-card-luxury {
+                        padding: 1.4rem 1.1rem !important;
+                        border-radius: 20px !important;
+                    }
+                    .card-heading-luxury {
+                        font-size: 1.25rem !important;
                     }
                     .icon-wrapper-luxury {
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 10px;
+                        width: 38px !important;
+                        height: 38px !important;
+                        border-radius: 10px !important;
                     }
                     .contact-link-premium {
-                        gap: 1rem !important;
-                        padding: 0.6rem !important;
+                        gap: 0.9rem !important;
+                        padding: 0.75rem 0.9rem !important;
+                        background: rgba(197, 160, 89, 0.04) !important;
+                        border: 1px solid rgba(197, 160, 89, 0.12) !important;
+                        border-radius: 14px !important;
                     }
                     .contact-info-val {
-                        font-size: 0.85rem;
+                        font-size: 0.8rem !important;
+                        white-space: normal !important;
+                        word-break: break-word !important;
                     }
                     .contact-header-luxury p {
-                        font-size: 0.95rem !important;
+                        font-size: 0.76rem !important;
+                    }
+                    .input-group-luxury {
+                        gap: 0.4rem !important;
+                    }
+                    .input-group-luxury input,
+                    .input-group-luxury textarea {
+                        padding: 0.85rem 0.85rem 0.85rem 2.8rem !important;
+                        font-size: 0.88rem !important;
+                        border-radius: 12px !important;
+                    }
+                    .input-icon {
+                        left: 0.95rem !important;
+                    }
+                    .premium-submit-btn {
+                        padding: 1rem !important;
+                        font-size: 0.82rem !important;
+                        border-radius: 12px !important;
                     }
                 }
                 
                 @media (max-width: 400px) {
                     .contact-info-val {
-                        font-size: 0.75rem;
+                        font-size: 0.74rem !important;
                     }
                 }
             `}</style>
