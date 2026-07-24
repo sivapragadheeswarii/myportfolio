@@ -446,6 +446,7 @@
 
 /* ── Responsive ── */
 @media (max-width: 1080px) {
+  .ex-hero { height: auto !important; min-height: 100vh; max-height: none !important; overflow: visible !important; }
   #home { height: auto; min-height: 100vh; overflow: auto; }
   .ex-container { flex-direction: column; height: auto; padding: 110px 6% 80px; gap: 50px; }
   .ex-left { width: 100%; max-width: 100%; }
@@ -455,7 +456,12 @@
 }
 
 @media (max-width: 600px) {
-  .ex-name { font-size: clamp(2rem, 8vw, 2.8rem); }
-  .ex-actions { gap: 10px; }
-  .ex-btn-primary, .ex-btn-secondary { padding: 10px 18px; font-size: 0.78rem; }
+  .ex-container { padding: 95px 5% 60px !important; gap: 35px !important; }
+  .ex-name { font-size: clamp(2rem, 8vw, 2.7rem); }
+  .ex-bio { font-size: 0.9rem; }
+  .ex-actions { gap: 10px; width: 100%; }
+  .ex-btn-primary, .ex-btn-secondary { width: 100%; justify-content: center; padding: 13px 20px; font-size: 0.82rem; }
+  .ex-metrics { width: 100%; justify-content: space-around; gap: 10px; }
+  .ex-portrait-card { width: 270px; height: 370px; }
+  .ex-status-pill { padding: 5px 12px; }
 }

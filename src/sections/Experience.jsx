@@ -200,6 +200,7 @@ const Experience = () => {
             <AnimatePresence mode="wait">
                 <motion.div
                     key={activeExp.id}
+                    className="ex-editorial-card"
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -30 }}
@@ -370,6 +371,12 @@ const Experience = () => {
                     }
                     .ex-timeline-track {
                         grid-template-columns: 1fr !important;
+                    }
+                }
+                @media (max-width: 600px) {
+                    .ex-editorial-card {
+                        padding: 1.8rem 1.4rem !important;
+                        border-radius: 20px !important;
                     }
                 }
             `}</style>

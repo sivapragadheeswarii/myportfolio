@@ -227,6 +227,7 @@ const Skills = () => {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedTech.id}
+                        className="skills-console-card"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
@@ -355,6 +356,12 @@ const Skills = () => {
                     }
                     .blueprint-meta-grid {
                         grid-template-columns: 1fr !important;
+                    }
+                }
+                @media (max-width: 600px) {
+                    .skills-console-card {
+                        padding: 1.6rem 1.2rem !important;
+                        border-radius: 20px !important;
                     }
                 }
             `}</style>
