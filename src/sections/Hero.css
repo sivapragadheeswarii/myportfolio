@@ -448,31 +448,36 @@
 @media (max-width: 1080px) {
   .ex-hero { height: auto !important; min-height: 100vh; max-height: none !important; overflow: visible !important; }
   #home { height: auto; min-height: 100vh; overflow: auto; }
-  .ex-container { flex-direction: column-reverse; height: auto; padding: 110px 6% 70px; gap: 45px; }
+  .ex-container { flex-direction: column-reverse; height: auto; padding: 100px 5% 60px; gap: 35px; }
   .ex-left { width: 100%; max-width: 100%; text-align: center; align-items: center; }
   .ex-right { width: 100%; justify-content: center; }
-  .ex-portrait-card { width: 300px; height: 400px; }
+  .ex-portrait-card { width: 280px; height: 380px; }
   .ex-footer-strip { display: none; }
 }
 
 @media (max-width: 600px) {
-  .ex-container { padding: 90px 5% 50px !important; gap: 32px !important; }
-  .ex-status-pill { margin-left: auto; margin-right: auto; padding: 6px 14px; }
-  .ex-title-block { text-align: center; }
-  .ex-greeting { font-size: 0.68rem; letter-spacing: 2px; }
-  .ex-name { font-size: clamp(1.4rem, 5.8vw, 1.9rem); line-height: 1.15; word-break: break-word; }
-  .ex-role-wrap { justify-content: center; font-size: 0.9rem; flex-wrap: wrap; }
-  .ex-bio { font-size: 0.88rem; text-align: center; margin-left: auto; margin-right: auto; line-height: 1.7; }
-  .ex-tech-stack { justify-content: center; flex-direction: column; gap: 8px; }
-  .ex-stack-items { justify-content: center; }
-  .ex-actions { gap: 12px; width: 100%; flex-direction: column; }
-  .ex-btn-primary, .ex-btn-secondary, .ex-btn-ghost { width: 100%; justify-content: center; padding: 14px 20px; font-size: 0.84rem; border-radius: 12px; min-height: 48px; }
-  .ex-metrics { width: 100%; justify-content: space-around; gap: 10px; background: rgba(12, 12, 18, 0.6); padding: 16px 12px; border-radius: 18px; border: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+  .ex-container { padding: 85px 4.5% 45px !important; gap: 28px !important; }
+  .ex-status-pill { margin-left: auto; margin-right: auto; padding: 5px 12px; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
+  .ex-status-text { font-size: 0.6rem; letter-spacing: 1px; }
+  .ex-title-block { text-align: center; margin-bottom: 8px; }
+  .ex-greeting { font-size: 0.65rem; letter-spacing: 2px; color: #D4AF37; font-weight: 700; margin-bottom: 4px; }
+  .ex-name { font-size: clamp(1.4rem, 5.8vw, 1.9rem); line-height: 1.2; word-break: break-word; font-weight: 800; }
+  .ex-role-wrap { justify-content: center; font-size: 0.85rem; flex-wrap: wrap; margin-bottom: 12px; gap: 6px; }
+  .ex-role-prefix { font-size: 0.78rem; opacity: 0.7; }
+  .ex-bio { font-size: 0.85rem; text-align: center; margin-left: auto; margin-right: auto; line-height: 1.65; color: rgba(255, 255, 255, 0.7); margin-bottom: 18px; }
+  .ex-tech-stack { justify-content: center; flex-direction: column; gap: 6px; margin-bottom: 22px; }
+  .ex-stack-label { font-size: 0.62rem; letter-spacing: 1.5px; color: #D4AF37; }
+  .ex-stack-items { justify-content: center; gap: 6px; }
+  .ex-tech-tag { font-size: 0.64rem; padding: 4px 10px; background: rgba(212, 175, 55, 0.06); border-color: rgba(212, 175, 55, 0.2); color: #F3E5AB; }
+  .ex-actions { gap: 10px; width: 100%; flex-direction: column; margin-bottom: 24px; }
+  .ex-btn-primary, .ex-btn-secondary, .ex-btn-ghost { width: 100%; justify-content: center; padding: 13px 18px; font-size: 0.82rem; border-radius: 12px; min-height: 46px; }
+  .ex-metrics { width: 100%; justify-content: space-around; gap: 8px; background: rgba(10, 10, 15, 0.75); padding: 14px 10px; border-radius: 16px; border: 1px solid rgba(212, 175, 55, 0.22); backdrop-filter: blur(16px); box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
   .ex-metric { text-align: center; }
-  .ex-metric-val { font-size: 1.3rem; color: #D4AF37; }
-  .ex-metric-lbl { font-size: 0.58rem; letter-spacing: 0.5px; }
-  .ex-portrait-card { width: 260px; height: 350px; }
-  .ex-executive-badge { padding: 8px 12px; bottom: 12px; left: 12px; right: 12px; }
-  .ex-badge-name { font-size: 0.62rem; }
-  .ex-badge-role { font-size: 0.54rem; }
+  .ex-metric-val { font-size: 1.25rem; color: #D4AF37; font-weight: 800; }
+  .ex-metric-lbl { font-size: 0.56rem; letter-spacing: 0.5px; opacity: 0.8; }
+  .ex-metric-divider { height: 22px; background: rgba(212, 175, 55, 0.15); }
+  .ex-portrait-card { width: 240px; height: 330px; border-radius: 18px; }
+  .ex-executive-badge { padding: 8px 12px; bottom: 10px; left: 10px; right: 10px; border-radius: 10px; background: rgba(10, 10, 15, 0.92); border-color: rgba(212, 175, 55, 0.35); }
+  .ex-badge-name { font-size: 0.6rem; letter-spacing: 0.5px; }
+  .ex-badge-role { font-size: 0.52rem; }
 }
