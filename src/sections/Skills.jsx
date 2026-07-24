@@ -156,17 +156,14 @@ const Skills = () => {
             }} className="skills-command-layout">
 
                 {/* LEFT COLUMN: Tech Selector List */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', letterSpacing: '2px', fontFamily: 'Fira Code', textTransform: 'uppercase', marginBottom: '0.2rem' }}>
-                        // SELECT TECHNOLOGY FOR SYSTEM BLUEPRINT
-                    </span>
-
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} className="skills-tech-selector-list">
                     {techSkills.map((tech) => {
                         const Icon = tech.icon;
                         const isSelected = selectedTech.id === tech.id;
                         return (
                             <motion.button
                                 key={tech.id}
+                                className="skills-tech-item-btn"
                                 onClick={() => setSelectedTech(tech)}
                                 whileHover={{ x: 4 }}
                                 style={{
@@ -359,9 +356,32 @@ const Skills = () => {
                     }
                 }
                 @media (max-width: 600px) {
+                    .skills-command-layout {
+                        gap: 1.5rem !important;
+                    }
+                    .skills-tech-selector-list {
+                        display: flex !important;
+                        flex-direction: row !important;
+                        overflow-x: auto !important;
+                        padding-bottom: 8px !important;
+                        gap: 0.8rem !important;
+                        scrollbar-width: none;
+                        -ms-overflow-style: none;
+                    }
+                    .skills-tech-selector-list::-webkit-scrollbar {
+                        display: none;
+                    }
+                    .skills-tech-item-btn {
+                        min-width: 220px !important;
+                        flex-shrink: 0 !important;
+                        padding: 1rem 1.2rem !important;
+                    }
                     .skills-console-card {
-                        padding: 1.6rem 1.2rem !important;
-                        border-radius: 20px !important;
+                        padding: 1.5rem 1.2rem !important;
+                        border-radius: 18px !important;
+                    }
+                    .skills-console-card h3 {
+                        font-size: 1.4rem !important;
                     }
                 }
             `}</style>
