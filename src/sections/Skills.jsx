@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Cpu, Globe, ShieldCheck, Terminal, Zap, Layers, 
     Database, Server, Layout, Sparkles, CheckCircle2,
-    GitBranch, Code2, Lock, Workflow, ChevronRight, Activity, Command
+    GitBranch, Code2, Lock, Workflow, ChevronRight, ChevronDown, Activity
 } from 'lucide-react';
 
 const techSkills = [
@@ -113,6 +113,7 @@ const techSkills = [
 
 const Skills = () => {
     const [selectedTech, setSelectedTech] = useState(techSkills[0]);
+    const [expandedMobileSkill, setExpandedMobileSkill] = useState('react');
 
     return (
         <section id="skills" className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
@@ -141,7 +142,7 @@ const Skills = () => {
                 </div>
             </div>
 
-            {/* Main Interactive Split Layout */}
+            {/* DESKTOP SPLIT LAYOUT */}
             <div style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1.35fr',
@@ -149,17 +150,16 @@ const Skills = () => {
                 position: 'relative',
                 zIndex: 1,
                 alignItems: 'stretch'
-            }} className="skills-command-layout">
+            }} className="skills-desktop-view">
 
                 {/* LEFT COLUMN: Tech Selector List */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} className="skills-tech-selector-list">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     {techSkills.map((tech) => {
                         const Icon = tech.icon;
                         const isSelected = selectedTech.id === tech.id;
                         return (
                             <motion.button
                                 key={tech.id}
-                                className="skills-tech-item-btn"
                                 onClick={() => setSelectedTech(tech)}
                                 whileHover={{ x: 4 }}
                                 style={{
@@ -220,7 +220,6 @@ const Skills = () => {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedTech.id}
-                        className="skills-console-card"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
@@ -284,7 +283,7 @@ const Skills = () => {
                                 <span style={{ fontSize: '0.7rem', color: 'var(--accent-gold)', letterSpacing: '2px', fontFamily: 'Fira Code', textTransform: 'uppercase', display: 'block', marginBottom: '1rem' }}>
                                     // IMPLEMENTATION CAPABILITIES
                                 </span>
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="blueprint-caps-grid">
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                     {selectedTech.capabilities.map((cap, idx) => (
                                         <div key={idx} style={{
                                             display: 'flex',
@@ -305,7 +304,7 @@ const Skills = () => {
                             </div>
 
                             {/* Production Benchmark & Usage */}
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem' }} className="blueprint-meta-grid">
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem' }}>
                                 <div style={{ background: 'rgba(212, 175, 55, 0.04)', padding: '14px 16px', borderRadius: '14px', border: '1px solid rgba(212, 175, 55, 0.12)' }}>
                                     <span style={{ fontSize: '0.65rem', color: 'var(--accent-gold)', fontFamily: 'Fira Code', display: 'block', marginBottom: '4px' }}>
                                         BENCHMARK METRIC
@@ -338,63 +337,149 @@ const Skills = () => {
                 </AnimatePresence>
             </div>
 
+            {/* MOBILE EXCLUSIVE INTERACTIVE ACCORDION CARDS */}
+            <div className="skills-mobile-accordion">
+                {techSkills.map((tech) => {
+                    const Icon = tech.icon;
+                    const isExpanded = expandedMobileSkill === tech.id;
+                    return (
+                        <div 
+                            key={tech.id} 
+                            style={{
+                                background: isExpanded ? 'rgba(15, 15, 22, 0.95)' : 'rgba(10, 10, 15, 0.65)',
+                                border: isExpanded ? '1px solid var(--accent-gold)' : '1px solid rgba(212, 175, 55, 0.15)',
+                                borderRadius: '18px',
+                                overflow: 'hidden',
+                                transition: 'all 0.35s ease',
+                                backdropFilter: 'blur(16px)',
+                                boxShadow: isExpanded ? '0 12px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(212, 175, 55, 0.2)' : 'none'
+                            }}
+                        >
+                            {/* Card Header (Tap to Expand/Collapse) */}
+                            <div 
+                                onClick={() => setExpandedMobileSkill(isExpanded ? null : tech.id)}
+                                style={{
+                                    padding: '1.2rem 1.1rem',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <div style={{
+                                        width: '38px',
+                                        height: '38px',
+                                        borderRadius: '10px',
+                                        background: isExpanded ? 'var(--accent-gold)' : 'rgba(212, 175, 55, 0.1)',
+                                        color: isExpanded ? 'var(--bg-primary)' : 'var(--accent-gold)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0
+                                    }}>
+                                        <Icon size={18} />
+                                    </div>
+                                    <div>
+                                        <div style={{ fontSize: '0.94rem', fontWeight: '700', color: '#FFFFFF', fontFamily: 'Inter, sans-serif' }}>
+                                            {tech.name}
+                                        </div>
+                                        <div style={{ fontSize: '0.62rem', color: isExpanded ? 'var(--accent-gold)' : 'var(--text-secondary)', fontFamily: 'Fira Code', letterSpacing: '0.5px' }}>
+                                            {tech.category}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <span style={{ fontSize: '0.8rem', color: 'var(--accent-gold)', fontFamily: 'Fira Code', fontWeight: 'bold' }}>
+                                        {tech.level}%
+                                    </span>
+                                    {isExpanded ? (
+                                        <ChevronDown size={18} style={{ color: 'var(--accent-gold)' }} />
+                                    ) : (
+                                        <ChevronRight size={18} style={{ color: 'rgba(255, 255, 255, 0.3)' }} />
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Expanded Content Details */}
+                            <AnimatePresence>
+                                {isExpanded && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{
+                                            borderTop: '1px solid rgba(212, 175, 55, 0.15)',
+                                            padding: '1.2rem 1.1rem',
+                                            background: 'rgba(5, 5, 10, 0.5)'
+                                        }}
+                                    >
+                                        <p style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: '1.6', fontStyle: 'italic', marginBottom: '1.2rem' }}>
+                                            "{tech.tagline}"
+                                        </p>
+
+                                        <div style={{ marginBottom: '1.2rem' }}>
+                                            <span style={{ fontSize: '0.65rem', color: 'var(--accent-gold)', letterSpacing: '1.5px', fontFamily: 'Fira Code', textTransform: 'uppercase', display: 'block', marginBottom: '0.6rem' }}>
+                                                // KEY CAPABILITIES
+                                            </span>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                                {tech.capabilities.map((cap, idx) => (
+                                                    <div key={idx} style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '8px',
+                                                        background: 'rgba(255, 255, 255, 0.03)',
+                                                        padding: '8px 10px',
+                                                        borderRadius: '8px',
+                                                        border: '1px solid rgba(255, 255, 255, 0.04)'
+                                                    }}>
+                                                        <CheckCircle2 size={13} style={{ color: '#10B981', flexShrink: 0 }} />
+                                                        <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontFamily: 'Inter, sans-serif' }}>
+                                                            {cap}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div style={{ background: 'rgba(212, 175, 55, 0.06)', padding: '10px 12px', borderRadius: '10px', border: '1px solid rgba(212, 175, 55, 0.18)' }}>
+                                            <div style={{ fontSize: '0.6rem', color: 'var(--accent-gold)', fontFamily: 'Fira Code', marginBottom: '2px' }}>
+                                                BENCHMARK PERFORMANCE
+                                            </div>
+                                            <div style={{ fontSize: '0.8rem', color: '#FFFFFF', fontWeight: '600' }}>
+                                                {tech.benchmark}
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    );
+                })}
+            </div>
+
             <style>{`
+                .skills-mobile-accordion {
+                    display: none;
+                }
                 @media (max-width: 950px) {
-                    .skills-command-layout {
+                    .skills-desktop-view {
                         grid-template-columns: 1fr !important;
                         gap: 2rem !important;
                     }
-                    .blueprint-caps-grid {
-                        grid-template-columns: 1fr !important;
-                    }
-                    .blueprint-meta-grid {
-                        grid-template-columns: 1fr !important;
-                    }
                 }
                 @media (max-width: 600px) {
-                    .skills-command-layout {
-                        gap: 1.2rem !important;
+                    .skills-desktop-view {
+                        display: none !important;
                     }
-                    .skills-tech-selector-list {
+                    .skills-mobile-accordion {
                         display: flex !important;
-                        flex-direction: row !important;
-                        overflow-x: auto !important;
-                        padding-bottom: 10px !important;
-                        gap: 0.75rem !important;
-                        scrollbar-width: none;
-                        -ms-overflow-style: none;
-                        -webkit-overflow-scrolling: touch;
-                    }
-                    .skills-tech-selector-list::-webkit-scrollbar {
-                        display: none;
-                    }
-                    .skills-tech-item-btn {
-                        min-width: 180px !important;
-                        flex-shrink: 0 !important;
-                        padding: 0.85rem 1rem !important;
-                        border-radius: 14px !important;
-                    }
-                    .skills-tech-item-btn svg {
-                        width: 16px !important;
-                        height: 16px !important;
-                    }
-                    .skills-console-card {
-                        padding: 1.4rem 1.1rem !important;
-                        border-radius: 18px !important;
-                        background: rgba(12, 12, 18, 0.85) !important;
-                    }
-                    .skills-console-card h3 {
-                        font-size: 1.35rem !important;
-                    }
-                    .blueprint-caps-grid {
-                        gap: 0.6rem !important;
-                    }
-                    .blueprint-caps-grid > div {
-                        padding: 10px 12px !important;
-                        font-size: 0.78rem !important;
-                    }
-                    .blueprint-meta-grid {
-                        gap: 0.8rem !important;
+                        flex-direction: column !important;
+                        gap: 1rem !important;
+                        position: relative;
+                        z-index: 1;
                     }
                 }
             `}</style>
