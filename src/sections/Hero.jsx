@@ -72,7 +72,7 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="ex-live-dot" />
-            <span className="ex-status-text">AVAILABLE FOR SENIOR ROLES & CONTRACTS</span>
+            <span className="ex-status-text">AVAILABLE FOR FREELANCING & CONTRACTS</span>
           </motion.div>
 
           {/* Name & Title Header */}
