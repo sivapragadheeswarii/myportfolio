@@ -506,14 +506,73 @@ const Projects = () => {
         @media (max-width: 1080px) {
           .cs-row, .cs-row.reversed {
             flex-direction: column;
-            padding: 2rem;
+            padding: 2.2rem;
             gap: 2.5rem;
           }
           .cs-media-col, .cs-info-col {
             width: 100%;
           }
           .cs-browser-viewport {
-            height: 240px;
+            height: 250px;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .cs-stack {
+            gap: 2.5rem;
+          }
+          .cs-row, .cs-row.reversed {
+            padding: 1.4rem 1.1rem !important;
+            border-radius: 20px !important;
+            gap: 1.5rem !important;
+          }
+          .cs-browser-viewport {
+            height: 195px !important;
+          }
+          .cs-browser-header {
+            padding: 8px 12px !important;
+          }
+          .cs-address-bar {
+            padding: 3px 10px !important;
+            font-size: 0.58rem !important;
+          }
+          .cs-item-title {
+            font-size: 1.35rem !important;
+            line-height: 1.25 !important;
+            margin-bottom: 0.8rem !important;
+          }
+          .cs-item-desc {
+            font-size: 0.85rem !important;
+            line-height: 1.65 !important;
+            margin-bottom: 1.2rem !important;
+          }
+          .cs-highlights-grid {
+            padding: 10px 12px !important;
+            gap: 6px !important;
+            margin-bottom: 1.2rem !important;
+          }
+          .cs-highlight-item {
+            font-size: 0.76rem !important;
+          }
+          .cs-tech-strip {
+            gap: 6px !important;
+            margin-bottom: 1.4rem !important;
+          }
+          .cs-tech-pill {
+            font-size: 0.62rem !important;
+            padding: 3px 10px !important;
+          }
+          .cs-btn-row {
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 10px !important;
+          }
+          .cs-btn-primary, .cs-btn-secondary {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 12px 16px !important;
+            font-size: 0.78rem !important;
+            border-radius: 10px !important;
           }
         }
       `}</style>
