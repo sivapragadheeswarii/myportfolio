@@ -448,20 +448,31 @@
 @media (max-width: 1080px) {
   .ex-hero { height: auto !important; min-height: 100vh; max-height: none !important; overflow: visible !important; }
   #home { height: auto; min-height: 100vh; overflow: auto; }
-  .ex-container { flex-direction: column; height: auto; padding: 110px 6% 80px; gap: 50px; }
-  .ex-left { width: 100%; max-width: 100%; }
+  .ex-container { flex-direction: column-reverse; height: auto; padding: 110px 6% 70px; gap: 45px; }
+  .ex-left { width: 100%; max-width: 100%; text-align: center; align-items: center; }
   .ex-right { width: 100%; justify-content: center; }
-  .ex-portrait-card { width: 300px; height: 420px; }
+  .ex-portrait-card { width: 300px; height: 400px; }
   .ex-footer-strip { display: none; }
 }
 
 @media (max-width: 600px) {
-  .ex-container { padding: 95px 5% 60px !important; gap: 35px !important; }
-  .ex-name { font-size: clamp(2rem, 8vw, 2.7rem); }
-  .ex-bio { font-size: 0.9rem; }
-  .ex-actions { gap: 10px; width: 100%; }
-  .ex-btn-primary, .ex-btn-secondary { width: 100%; justify-content: center; padding: 13px 20px; font-size: 0.82rem; }
-  .ex-metrics { width: 100%; justify-content: space-around; gap: 10px; }
-  .ex-portrait-card { width: 270px; height: 370px; }
-  .ex-status-pill { padding: 5px 12px; }
+  .ex-container { padding: 90px 5% 50px !important; gap: 32px !important; }
+  .ex-status-pill { margin-left: auto; margin-right: auto; padding: 6px 14px; }
+  .ex-title-block { text-align: center; }
+  .ex-greeting { font-size: 0.68rem; letter-spacing: 2px; }
+  .ex-name { font-size: clamp(2rem, 8.5vw, 2.6rem); }
+  .ex-role-wrap { justify-content: center; font-size: 0.9rem; flex-wrap: wrap; }
+  .ex-bio { font-size: 0.88rem; text-align: center; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .ex-tech-stack { justify-content: center; flex-direction: column; gap: 8px; }
+  .ex-stack-items { justify-content: center; }
+  .ex-actions { gap: 12px; width: 100%; flex-direction: column; }
+  .ex-btn-primary, .ex-btn-secondary, .ex-btn-ghost { width: 100%; justify-content: center; padding: 14px 20px; font-size: 0.84rem; border-radius: 12px; min-height: 48px; }
+  .ex-metrics { width: 100%; justify-content: space-around; gap: 10px; background: rgba(12, 12, 18, 0.6); padding: 16px 12px; border-radius: 18px; border: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+  .ex-metric { text-align: center; }
+  .ex-metric-val { font-size: 1.3rem; color: #D4AF37; }
+  .ex-metric-lbl { font-size: 0.58rem; letter-spacing: 0.5px; }
+  .ex-portrait-card { width: 260px; height: 350px; }
+  .ex-executive-badge { padding: 8px 12px; bottom: 12px; left: 12px; right: 12px; }
+  .ex-badge-name { font-size: 0.62rem; }
+  .ex-badge-role { font-size: 0.54rem; }
 }
