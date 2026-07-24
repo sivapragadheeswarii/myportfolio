@@ -374,9 +374,38 @@ const Experience = () => {
                     }
                 }
                 @media (max-width: 600px) {
+                    .ex-timeline-track {
+                        grid-template-columns: repeat(2, 1fr) !important;
+                        gap: 0.8rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .ex-timeline-track button {
+                        padding: 0.85rem 0.9rem !important;
+                        gap: 10px !important;
+                        border-radius: 14px !important;
+                    }
+                    .ex-timeline-track button div div:first-child {
+                        font-size: 0.62rem !important;
+                    }
+                    .ex-timeline-track button div div:last-child {
+                        font-size: 0.88rem !important;
+                    }
                     .ex-editorial-card {
-                        padding: 1.8rem 1.4rem !important;
-                        border-radius: 20px !important;
+                        padding: 1.4rem 1.1rem !important;
+                        border-radius: 18px !important;
+                    }
+                    .ex-editorial-card h3 {
+                        font-size: 1.45rem !important;
+                        line-height: 1.25 !important;
+                    }
+                    .ex-editorial-grid {
+                        gap: 1.8rem !important;
+                    }
+                    .ex-editorial-card p {
+                        font-size: 0.85rem !important;
+                        line-height: 1.6 !important;
+                        padding-left: 12px !important;
+                        margin-bottom: 1.4rem !important;
                     }
                 }
             `}</style>
