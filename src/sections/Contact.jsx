@@ -40,22 +40,27 @@ const Contact = () => {
             <div style={{ position: 'absolute', top: '25%', right: '-10%', width: '450px', height: '450px', background: 'radial-gradient(circle, rgba(197, 160, 89, 0.05) 0%, transparent 70%)', filter: 'blur(100px)', zIndex: -1 }}></div>
             
             <div className="contact-header-luxury">
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--accent-gold)', marginBottom: '0.6rem' }}>
+                    <div style={{ width: '30px', height: '1px', background: 'currentColor' }}></div>
+                    <span style={{ fontSize: '0.75rem', fontWeight: '700', letterSpacing: '3px', fontFamily: 'Fira Code' }}>GET_IN_TOUCH</span>
+                    <div style={{ width: '30px', height: '1px', background: 'currentColor' }}></div>
+                </div>
                 <motion.h2 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    style={{ fontSize: '3rem', marginBottom: '1rem', fontWeight: '700', color: '#FFFFFF' }}
+                    style={{ fontSize: 'clamp(2.3rem, 5vw, 3.4rem)', marginBottom: '0.8rem', fontWeight: '700', color: '#FFFFFF', fontFamily: 'Playfair Display, serif', letterSpacing: '-0.5px' }}
                 >
-                    Let's <span className="gradient-text">Connect</span>
+                    LET'S_<span className="gradient-text">CONNECT</span>
                 </motion.h2>
                 <motion.p 
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: '1.05rem', fontWeight: '300' }}
+                    style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: '0.88rem', fontFamily: 'Fira Code', letterSpacing: '1px' }}
                 >
-                    Awaiting new horizons. Whether it's a bold architecture or a technical puzzle, my door is always open for collaboration.
+                    // AVAILABLE FOR FREELANCING & CONTRACT ROLES
                 </motion.p>
             </div>
 

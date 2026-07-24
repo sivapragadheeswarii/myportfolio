@@ -54,10 +54,14 @@ const AnimatedStat = ({ label, value }) => {
 const About = () => {
     return (
         <section id="about" className="section-padding" style={{ position: 'relative' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3.5rem' }}>
-                <span style={{ color: 'var(--accent-gold)', fontSize: '0.85rem', fontWeight: 'bold', fontFamily: 'Fira Code' }}>// 02</span>
-                <h2 style={{ fontSize: '2rem', color: '#FFFFFF' }}>SOURCE_<span className="gradient-text">PROFILE</span></h2>
-                <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }}></div>
+            <div style={{ marginBottom: '3.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--accent-gold)', marginBottom: '0.6rem' }}>
+                    <div style={{ width: '40px', height: '1px', background: 'currentColor' }}></div>
+                    <span style={{ fontSize: '0.75rem', fontWeight: '700', letterSpacing: '3px', fontFamily: 'Fira Code' }}>SOURCE_PROFILE</span>
+                </div>
+                <h2 style={{ fontSize: 'clamp(2.3rem, 5vw, 3.4rem)', fontWeight: 'bold', color: '#FFFFFF', margin: 0, fontFamily: 'Playfair Display, serif', letterSpacing: '-0.5px' }}>
+                    ABOUT_<span className="gradient-text">BIOGRAPHY</span>
+                </h2>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }} className="about-grid">

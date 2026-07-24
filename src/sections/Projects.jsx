@@ -215,10 +215,10 @@ const Projects = () => {
 
         .cs-title {
           font-family: 'Playfair Display', serif;
-          font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+          font-size: clamp(2.3rem, 5vw, 3.4rem);
           font-weight: 800;
           color: #ffffff;
-          letter-spacing: -1px;
+          letter-spacing: -0.5px;
           margin-bottom: 1rem;
         }
 

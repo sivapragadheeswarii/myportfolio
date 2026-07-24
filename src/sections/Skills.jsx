@@ -135,7 +135,7 @@ const Skills = () => {
                     <span style={{ fontSize: '0.75rem', fontWeight: '700', letterSpacing: '3px', fontFamily: 'Fira Code' }}>EXECUTIVE_CAPABILITIES</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem' }}>
-                    <h2 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.2rem)', fontWeight: 'bold', color: '#FFFFFF', margin: 0, fontFamily: 'Playfair Display, serif' }}>
+                    <h2 style={{ fontSize: 'clamp(2.3rem, 5vw, 3.4rem)', fontWeight: 'bold', color: '#FFFFFF', margin: 0, fontFamily: 'Playfair Display, serif', letterSpacing: '-0.5px' }}>
                         TECHNICAL_<span className="gradient-text">BLUEPRINT</span>
                     </h2>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(212, 175, 55, 0.08)', padding: '6px 16px', borderRadius: '20px', border: '1px solid rgba(212, 175, 55, 0.2)', color: 'var(--accent-gold)', fontSize: '0.75rem', fontFamily: 'Fira Code' }}>
