@@ -168,19 +168,10 @@ const Navbar = () => {
                                 zIndex: 4000
                             }}
                         >
-                            {/* Executive Branding Ribbon Header */}
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.8rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                                <div>
-                                    <div style={{ fontSize: '0.85rem', fontWeight: 'bold', color: '#FFFFFF', fontFamily: 'Playfair Display, serif' }}>
-                                        SIVAPRAGADHEESWARI N.
-                                    </div>
-                                    <div style={{ fontSize: '0.62rem', color: 'var(--accent-gold)', fontFamily: 'Fira Code', letterSpacing: '1px' }}>
-                                        // EXECUTIVE STUDIO
-                                    </div>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.6rem', color: '#10B981', fontFamily: 'Fira Code' }}>
-                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 8px #10B981' }} />
-                                    <span>ONLINE</span>
+                            {/* Executive Branding Header */}
+                            <div style={{ paddingBottom: '0.6rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                                <div style={{ fontSize: '0.88rem', fontWeight: 'bold', color: '#FFFFFF', fontFamily: 'Playfair Display, serif' }}>
+                                    SIVAPRAGADHEESWARI N.
                                 </div>
                             </div>
 
