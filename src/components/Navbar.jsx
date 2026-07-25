@@ -110,101 +110,181 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    {/* Mobile Toggle Button */}
+                    {/* Mobile Toggle Button Capsule */}
                     <button 
                         className="mobile-toggle-capsule"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         style={{ 
-                            background: 'transparent', 
-                            border: 'none', 
-                            color: 'var(--text-primary)', 
-                            padding: '8px 12px',
+                            background: 'rgba(12, 12, 18, 0.9)', 
+                            border: '1px solid rgba(212, 175, 55, 0.35)', 
+                            borderRadius: '999px',
+                            color: 'var(--accent-gold)', 
+                            padding: '8px 16px',
                             cursor: 'pointer',
                             display: 'none',
-                            outline: 'none'
+                            outline: 'none',
+                            backdropFilter: 'blur(16px)',
+                            WebkitBackdropFilter: 'blur(16px)',
+                            boxShadow: '0 10px 25px rgba(0,0,0,0.8), 0 0 15px rgba(212, 175, 55, 0.12)'
                         }}
                     >
-                        {mobileMenuOpen ? <X size={20} style={{ color: 'var(--accent-gold)' }} /> : <Menu size={20} />}
+                        {mobileMenuOpen ? (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <X size={18} style={{ color: 'var(--accent-gold)' }} />
+                                <span style={{ fontSize: '0.72rem', fontFamily: 'Fira Code', fontWeight: 'bold' }}>CLOSE</span>
+                            </div>
+                        ) : (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Menu size={18} style={{ color: 'var(--accent-gold)' }} />
+                                <span style={{ fontSize: '0.72rem', fontFamily: 'Fira Code', fontWeight: 'bold', letterSpacing: '1px' }}>MENU</span>
+                            </div>
+                        )}
                     </button>
                 </motion.nav>
 
-                {/* Mobile Menu (Floating Sheet) */}
+                {/* Mobile Menu (Executive Floating Glass Command Sheet) */}
                 <AnimatePresence>
                     {mobileMenuOpen && (
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: -15 }}
+                            initial={{ opacity: 0, scale: 0.94, y: -15 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95, y: -15 }}
-                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                            exit={{ opacity: 0, scale: 0.94, y: -15 }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 220 }}
                             style={{
                                 position: 'fixed',
-                                top: '85px',
-                                right: '0px',
-                                width: 'min(300px, 90vw)',
-                                background: 'rgba(8, 8, 8, 0.96)',
+                                top: '80px',
+                                right: '16px',
+                                width: 'min(320px, 92vw)',
+                                background: 'rgba(10, 10, 15, 0.96)',
                                 backdropFilter: 'blur(30px)',
                                 WebkitBackdropFilter: 'blur(30px)',
-                                border: '1px solid var(--glass-border)',
-                                borderRadius: '20px',
-                                padding: '1.8rem',
+                                border: '1px solid rgba(212, 175, 55, 0.3)',
+                                borderRadius: '24px',
+                                padding: '1.6rem',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: '1rem',
-                                boxShadow: '0 30px 60px rgba(0,0,0,0.9), 0 0 30px rgba(197, 160, 89, 0.05)',
+                                gap: '1.2rem',
+                                boxShadow: '0 35px 70px rgba(0,0,0,0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                                 zIndex: 4000
                             }}
                         >
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                            {/* Executive Branding Ribbon Header */}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.8rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                                <div>
+                                    <div style={{ fontSize: '0.85rem', fontWeight: 'bold', color: '#FFFFFF', fontFamily: 'Playfair Display, serif' }}>
+                                        SIVAPRAGADHEESWARI N.
+                                    </div>
+                                    <div style={{ fontSize: '0.62rem', color: 'var(--accent-gold)', fontFamily: 'Fira Code', letterSpacing: '1px' }}>
+                                        // EXECUTIVE STUDIO
+                                    </div>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.6rem', color: '#10B981', fontFamily: 'Fira Code' }}>
+                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 8px #10B981' }} />
+                                    <span>ONLINE</span>
+                                </div>
+                            </div>
+
+                            {/* Mobile Nav Links Stack */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                                 {navLinks.map((link, idx) => (
                                     <motion.a 
                                         key={link.name} 
                                         href={link.href} 
                                         onClick={() => setMobileMenuOpen(false)}
-                                        whileTap={{ scale: 0.98, x: 3 }}
+                                        whileTap={{ scale: 0.97 }}
                                         style={{ 
-                                            color: 'var(--text-primary)', 
+                                            color: '#FFFFFF', 
                                             textDecoration: 'none', 
-                                            fontSize: '1rem', 
+                                            fontSize: '0.92rem', 
                                             fontWeight: '600',
-                                            padding: '0.8rem',
+                                            padding: '0.85rem 1rem',
                                             fontFamily: 'Fira Code, monospace',
-                                            borderBottom: '1px solid rgba(197, 160, 89, 0.08)',
+                                            background: 'rgba(255, 255, 255, 0.03)',
+                                            border: '1px solid rgba(255, 255, 255, 0.05)',
+                                            borderRadius: '14px',
                                             display: 'flex',
                                             alignItems: 'center',
-                                            gap: '10px'
+                                            justifyContent: 'space-between',
+                                            transition: 'all 0.25s ease'
                                         }}
                                     >
-                                        <span style={{ color: 'var(--accent-gold)', fontSize: '0.75rem' }}>0{idx + 1}</span>
-                                        <span>{link.name}</span>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                            <span style={{ color: 'var(--accent-gold)', fontSize: '0.72rem', fontWeight: 'bold' }}>0{idx + 1}.</span>
+                                            <span>{link.name}</span>
+                                        </div>
+                                        <span style={{ color: 'var(--accent-gold)', opacity: 0.6, fontSize: '0.8rem' }}>→</span>
                                     </motion.a>
                                 ))}
                             </div>
-                            
-                            {/* Mobile Connect Link */}
-                            <motion.a 
-                                whileTap={{ scale: 0.98 }}
-                                href="#contact"
-                                onClick={() => setMobileMenuOpen(false)}
-                                style={{
-                                    marginTop: '1rem',
-                                    background: 'var(--accent-gold)',
-                                    borderRadius: '12px',
-                                    padding: '12px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    gap: '8px',
-                                    cursor: 'pointer',
-                                    color: 'var(--bg-primary)',
-                                    textDecoration: 'none',
-                                    boxShadow: '0 10px 20px rgba(197, 160, 89, 0.15)',
-                                    fontFamily: 'Fira Code, monospace',
-                                    fontWeight: '700',
-                                    fontSize: '0.8rem'
-                                }}
-                            >
-                                <span>INITIALIZE_CONTACT()</span>
-                            </motion.a>
+
+                            {/* Social Icons & Contact CTA */}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '0.4rem' }}>
+                                <motion.a 
+                                    whileTap={{ scale: 0.95 }}
+                                    href="https://github.com/sivapragadheeswarii" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    style={{
+                                        width: '42px',
+                                        height: '42px',
+                                        borderRadius: '12px',
+                                        background: 'rgba(255, 255, 255, 0.05)',
+                                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                                        color: '#FFFFFF',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0
+                                    }}
+                                >
+                                    <Github size={18} />
+                                </motion.a>
+
+                                <motion.a 
+                                    whileTap={{ scale: 0.95 }}
+                                    href="https://linkedin.com/in/sivapragadheeswari" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    style={{
+                                        width: '42px',
+                                        height: '42px',
+                                        borderRadius: '12px',
+                                        background: 'rgba(255, 255, 255, 0.05)',
+                                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                                        color: '#FFFFFF',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0
+                                    }}
+                                >
+                                    <Linkedin size={18} />
+                                </motion.a>
+
+                                <motion.a 
+                                    whileTap={{ scale: 0.97 }}
+                                    href="#contact"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    style={{
+                                        flex: 1,
+                                        background: 'linear-gradient(135deg, var(--accent-gold), #8A6E3B)',
+                                        borderRadius: '12px',
+                                        padding: '11px 14px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        cursor: 'pointer',
+                                        color: 'var(--bg-primary)',
+                                        textDecoration: 'none',
+                                        boxShadow: '0 8px 20px rgba(197, 160, 89, 0.25)',
+                                        fontFamily: 'Fira Code, monospace',
+                                        fontWeight: '700',
+                                        fontSize: '0.76rem'
+                                    }}
+                                >
+                                    <span>siva.connect()</span>
+                                </motion.a>
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
@@ -213,7 +293,8 @@ const Navbar = () => {
                     @media (max-width: 800px) {
                         .navbar-wrapper {
                             left: auto !important;
-                            right: 20px !important;
+                            right: 16px !important;
+                            top: 16px !important;
                             transform: none !important;
                         }
                         .desktop-nav-capsule { display: none !important; }
